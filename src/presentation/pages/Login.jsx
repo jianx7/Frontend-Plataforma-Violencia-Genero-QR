@@ -28,7 +28,7 @@ function Login() {
                 >
                     <div className="w-75">
                         <h2 className="mb-2 text-center">Bienvenida a GITASVG-QR</h2>
-                        <p className="mb-5 text-center">Inicio de sesión</p>
+                        <p className="mb-5 text-center">INICIO DE SESIÓN</p>
                         <Form>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Correo electrónico</Form.Label>
@@ -39,10 +39,9 @@ function Login() {
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control type="password" placeholder="Contraseña" />
                             </Form.Group>
-                            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                <Form.Check type="checkbox" label="He leído y acepto el Aviso de Privacidad" />
+                           <Form.Group className="mb-5" controlId="recuperarContraseña">
+                               <p>¿No tienes una cuenta? <a href="/register">Regístrate</a></p>
                             </Form.Group>
-
                             <div className="d-grid justify-content-center">
                                 <Button className="btn-login" type="submit">
                                     Entrar
