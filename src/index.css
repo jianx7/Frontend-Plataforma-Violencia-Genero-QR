@@ -2,3 +2,32 @@ body {
   margin: 0;
   font-family: sans-serif;
 }
+
+.btn-login {
+  background-color: #611232;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 8px;
+  width: 100px;
+  margin-bottom: 50px;
+}
+
+.btn-login:hover{
+  background-color: #611232;
+}
+
+.navbar-custom{
+  background-color: #611232;
+}
+
+.navbar-custom .nav-link,
+.navbar-custom .navbar-brand {
+  color: #ffffff; 
+  font-weight: 500;
+}
+
+.navbar-custom:hover{
+  color: #ffffff;
+}
+
