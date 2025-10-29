@@ -1,114 +1,147 @@
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
 export default function Register() {
   return (
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Crear cuenta</title>
-        <link
-          href="https://framework-gb.cdn.gob.mx/gm/v3/assets/styles/main.css"
-          rel="stylesheet"
-        ></link>
-      </head>
-      <body>
-        <main>
-          {/* Panel de bienvenida */}
-          <section>
-            <header>
-              <img src="" alt="LOGO" />
-            </header>
-
-            <h1>¡Bienvenida!</h1>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error
-              reiciendis ut numquam? Laudantium asperiores provident iusto,
-              maxime, dolor esse totam ab, expedita aut eligendi id alias.
+    <main className="min-vh-100 d-flex align-items-center">
+      <Container fluid>
+        <Row className="align-items-center">
+          {/* Panel izquierdo */}
+          <Col
+            md={6}
+            className="bg-register text-light p-5 d-flex flex-column justify-content-center"
+          >
+            <h1 className="fw-bold mb-4 fs-1">¡Bienvenida!</h1>
+            <p className="lead mb-4 fs-5">
+              Esta plataforma digital busca apoyar y orientar a mujeres en
+              situaciones de violencia. Regístrate para acceder a nuestros
+              recursos y servicios.
             </p>
-
             <article>
-              <img src="" alt="Imagen-visual" />
+              <img
+                src="/assets/imagen-bienvenida.png"
+                alt="Imagen institucional"
+                className="img-fluid rounded"
+              />
             </article>
-          </section>
+          </Col>
 
-          {/* Panel de registro*/}
-          <section>
-            <h2>Crea tu cuenta</h2>
-            <p>
+          {/* Panel derecho */}
+          <Col md={6} className="p-5">
+            <h2 className="fw-bold mb-3 fs-1">Crea tu cuenta</h2>
+            <p className="mb-4 fs-4">
               Ingresa los siguientes datos para iniciar el proceso de registro:
             </p>
-            {/* Formulario */}
-            <form role="form">
 
-              <div class="form-group">
-                <label class="control-label" for="file-01">
-                  Escane tu INE para confirmar tu identidad
-                  <input id="file-01"
-                    type="file"
-                    accept="pdf/*"
-                    placeholder="Escanear INE"
-                  />
-                </label>
-              </div>
+            <Form className="form-gob">
+              <Form.Group controlId="file-01" className="mb-3 fs-5">
+                <Form.Label className="fw-semibold">
+                  Escanea tu INE para confirmar tu identidad
+                </Form.Label>
+                <Form.Control size="lg" type="file" accept="application/pdf" />
+              </Form.Group>
 
-              <div class="form-group">
-              <label class="control-label">
-                Apellidos
-                <input type="text" placeholder="Escribe tus apellidos" />
-              </label>
-              </div>
-
-              <div class="form-group">
-              <label class="control-label">
-                Nombre
-                <input type="text" placeholder="Escribe tu nombre" />
-              </label>
-              </div>
-
-              <div class="form-group">
-              <label class="control-label">
-                Fecha de nacimiento
-                <input type="date" />
-              </label>
-              </div>
-
-              <div class="form-group">
-              <label class="control-label" for="email-01">
-                E-mail o número telefónico
-              </label>
-              <input class="form-control" id="email-01"
-                  type="email"
-                  placeholder="Escribe tu e-mail o tu correo electrónico"
+              <FloatingLabel
+                controlId="floatingApellidos"
+                label="Apellidos"
+                className="mb-3 fs-5"
+              >
+                <Form.Control
+                  size="lg" type="text"
+                  placeholder="Escribe tus apellidos"
+                  required
                 />
-              </div>
+              </FloatingLabel>
 
-              <div class="form-group">
-              <label>
-                Contraseña
-                <input type="password" placeholder="Escribe tu contraseña" />
-              </label>
-              <small>
+              <FloatingLabel
+                controlId="floatingNombre"
+                label="Nombre"
+                className="mb-3"
+              >
+                <Form.Control
+                  size="lg" type="text"
+                  placeholder="Escribe tu nombre"
+                  required
+                />
+              </FloatingLabel>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Fecha de nacimiento</Form.Label>
+                <Form.Control size="lg" type="date" required />
+              </Form.Group>
+
+              <FloatingLabel
+                controlId="floatingEmail"
+                label="E-mail o número telefónico"
+                className="mb-3"
+              >
+                <Form.Control
+                  size="lg" type="email"
+                  placeholder="correo@ejemplo.com"
+                  required
+                />
+              </FloatingLabel>
+
+              <FloatingLabel
+                controlId="floatingPassword"
+                label="Contraseña"
+                className="mb-3"
+              >
+                <Form.Control
+                  type="password"
+                  placeholder="Escribe tu contraseña"
+                  required
+                />
+              </FloatingLabel>
+
+              <Form.Text className="text-muted d-block mb-3 fs-6">
                 Debe tener al menos 9 caracteres, una mayúscula y un carácter
                 especial (*@_).
-              </small>
-              </div>
+              </Form.Text>
 
-              <div class="form-group">
-                <input type="checkbox" id="terms" />
-                <label>
-                  Acepto los <a href="#">Términos y condiciones</a> y la{" "}
-                  <a href="#">Política de privacidad</a>.
-                </label>
-              </div>
+              <Form.Group controlId="terms" className="mb-3">
+                <Form.Check
+                  type="checkbox"
+                  label={
+                    <>
+                      Acepto los{" "}
+                      <a href="#" className="fw-semibold">
+                        Términos y condiciones
+                      </a>{" "}
+                      y la{" "}
+                      <a href="#" className="fw-semibold">
+                        Política de privacidad
+                      </a>
+                      .
+                    </>
+                  }
+                  required
+                />
+              </Form.Group>
 
-              <button type="submit">Registrarse</button>
+              <Button
+                variant="danger"
+                type="submit"
+                size="lg"
+                className="w-100 fw-bold"
+              >
+                Registrarse
+              </Button>
 
-              <p className="login-link">
-                ¿Ya tienes una cuenta? <a href="#">Inicia sesión</a>
+              <p className="mt-3 text-center fs-5">
+                ¿Ya tienes una cuenta?{" "}
+                <a href="/login" className="fw-semibold">
+                  Inicia sesión
+                </a>
               </p>
-            </form>
-          </section>
-        </main>
-      </body>
-    </html>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    </main>
   );
 }
