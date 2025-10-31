@@ -7,19 +7,20 @@ export default function navbar() {
   return (
     <Navbar expand="md" variant="dark" className="navbar-custom">
       <Container>
-        <Navbar.Brand as={Link} to="/">GITASVG-QR</Navbar.Brand>
+        <Navbar.Brand className="text-center" as={Link} to="/">GITASVG-QR</Navbar.Brand>
         <Navbar.Toggle aria-controls="subNavBarDropdown" />
         <Navbar.Collapse id="subNavBarDropdown">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/home">Inicio</Nav.Link>
-            <NavDropdown title="Denuncias" id="navbarDropdown">
+            <Nav.Link as={Link} to="/">Inicio</Nav.Link>
+            <NavDropdown title="Denuncia" id="navbarDropdown">
               <NavDropdown.Item as={Link} to="/predenuncia">Predenuncia</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/status">Seguimiento</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/seguimiento">Seguimiento</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link as={Link} to="/recursos">Recursos</Nav.Link>
+            <Nav.Link as={Link} to="/directorio">Directorio</Nav.Link>
+             <Nav.Link as={Link} to="/ayuda">Ayuda</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/login">Iniciar sesión</Nav.Link>
+            <Nav.Link as={Link} to="/login">Perfil</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
