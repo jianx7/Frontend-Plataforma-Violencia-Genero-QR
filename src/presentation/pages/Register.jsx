@@ -140,7 +140,7 @@ export default function Register() {
               </p>
             </Form>
           </Col>
-        </Row>
+        </Row>4
       </Container>
     </main>
   );

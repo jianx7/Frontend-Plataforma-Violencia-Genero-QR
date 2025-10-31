@@ -122,3 +122,110 @@ button.btn-danger {
 button.btn-danger:hover {
   background-color: #611232 !important;
 }
+
+/* HOME */
+.home-gob {
+  background-color: #f8f9fa;
+  color: #13322b;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* === Sección Hero === */
+.hero-section {
+  background-color: #9d2449;
+  color: #ffffff;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.hero-text {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-img {
+  background-color: #ddc9a3;
+  width: 300px;
+  height: 300px;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+/* Botón estilo Gobierno */
+.btn-gob {
+  background-color: #ddc9a3;
+  border: none;
+  color: #13322b;
+  font-weight: bold;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+.btn-gob:hover {
+  background-color: #c0a56b;
+}
+
+/* === Sección Plataforma === */
+.platform-section {
+  background-color: #ffffff;
+  padding: 4rem 0;
+}
+
+.platform-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #13322b;
+}
+
+.option-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.option-card:hover {
+  transform: translateY(-5px);
+}
+
+.option-img {
+  background-color: #eaeaea;
+  height: 150px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* === Sección Campañas === */
+.campaigns-section {
+  background-color: #f3f3f3;
+}
+
+.campaign-title {
+  font-weight: 700;
+  color: #9d2449;
+  margin-bottom: 1rem;
+}
+
+.campaign-text {
+  font-size: 1.1rem;
+  color: #13322b;
+}
+
+.campaign-img {
+  background-color: #ddc9a3;
+  height: 250px;
+  border-radius: 8px;
+}
+
+.mini-card {
+  background-color: #e0e0e0;
+  height: 150px;
+  border-radius: 8px;
+}
