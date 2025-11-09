@@ -1,9 +1,11 @@
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import {
+  FloatingLabel,
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+} from "react-bootstrap";
 
 export default function Register() {
   return (
@@ -16,7 +18,7 @@ export default function Register() {
             className="bg-register text-light p-5 d-flex flex-column justify-content-center"
           >
             <h1 className="fw-bold mb-4 fs-1">¡Bienvenida!</h1>
-            <p className="lead mb-4 fs-5">
+            <p className="lead mb-4 fs-3">
               Esta plataforma digital busca apoyar y orientar a mujeres en
               situaciones de violencia. Regístrate para acceder a nuestros
               recursos y servicios.
@@ -31,79 +33,87 @@ export default function Register() {
           </Col>
 
           {/* Panel derecho */}
-          <Col md={6} className="p-5">
-            <h2 className="fw-bold mb-3 fs-1">Crea tu cuenta</h2>
-            <p className="mb-4 fs-4">
-              Ingresa los siguientes datos para iniciar el proceso de registro:
-            </p>
-
+          <Col
+            md={6}
+            className="p-5 d-flex flex-column justify-content-center"
+          >
             <Form className="form-gob">
-              <Form.Group controlId="file-01" className="mb-3 fs-5">
+              <h2 className="text-reg mb-3">Crea tu cuenta</h2>
+              <p className="mb-4 fs-3">
+                Ingresa los siguientes datos para iniciar el proceso de
+                registro:
+              </p>
+
+              <Form.Group controlId="formFileLg" className="mb-3 fs-4">
                 <Form.Label className="fw-semibold">
                   Escanea tu INE para confirmar tu identidad
                 </Form.Label>
                 <Form.Control size="lg" type="file" accept="application/pdf" />
               </Form.Group>
 
-              <FloatingLabel
+              <Form.Group
                 controlId="floatingApellidos"
                 label="Apellidos"
-                className="mb-3 fs-5"
+                className="mb-3 fs-4"
               >
+                <Form.Label>Apellidos</Form.Label>
                 <Form.Control
-                  size="lg" type="text"
+                  size="lg"
+                  type="text"
                   placeholder="Escribe tus apellidos"
                   required
                 />
-              </FloatingLabel>
+              </Form.Group>
 
-              <FloatingLabel
+              <Form.Group
                 controlId="floatingNombre"
                 label="Nombre"
-                className="mb-3"
+                className="mb-3 fs-4"
               >
+                <Form.Label>Nombre</Form.Label>
                 <Form.Control
-                  size="lg" type="text"
+                  size="lg"
+                  type="text"
                   placeholder="Escribe tu nombre"
                   required
                 />
-              </FloatingLabel>
+              </Form.Group>
 
-              <Form.Group className="mb-3">
+              <Form.Group className="mb-3 fs-4">
                 <Form.Label>Fecha de nacimiento</Form.Label>
                 <Form.Control size="lg" type="date" required />
               </Form.Group>
 
-              <FloatingLabel
-                controlId="floatingEmail"
-                label="E-mail o número telefónico"
-                className="mb-3"
-              >
+              <Form.Group className="mb-3 fs-4" controlId="email">
+                <Form.Label>Email</Form.Label>
                 <Form.Control
-                  size="lg" type="email"
+                  size="lg"
+                  type="email"
                   placeholder="correo@ejemplo.com"
                   required
                 />
-              </FloatingLabel>
+              </Form.Group>
 
-              <FloatingLabel
+              <Form.Group
                 controlId="floatingPassword"
                 label="Contraseña"
-                className="mb-3"
+                className="mb-3 fs-4"
               >
+                <Form.Label>Contraseña</Form.Label>
                 <Form.Control
+                  size="lg"
                   type="password"
                   placeholder="Escribe tu contraseña"
                   required
                 />
-              </FloatingLabel>
+              </Form.Group>
 
-              <Form.Text className="text-muted d-block mb-3 fs-6">
+              <Form.Text className="text-muted d-block mb-3 fs-5">
                 Debe tener al menos 9 caracteres, una mayúscula y un carácter
                 especial (*@_).
               </Form.Text>
 
-              <Form.Group controlId="terms" className="mb-3">
+              <Form.Group controlId="terms" className="mb-3 fs-4">
                 <Form.Check
                   type="checkbox"
                   label={
@@ -127,7 +137,7 @@ export default function Register() {
                 variant="danger"
                 type="submit"
                 size="lg"
-                className="w-100 fw-bold"
+                className="w-100 fw-bold fs-4"
               >
                 Registrarse
               </Button>
@@ -140,7 +150,7 @@ export default function Register() {
               </p>
             </Form>
           </Col>
-        </Row>4
+        </Row>
       </Container>
     </main>
   );

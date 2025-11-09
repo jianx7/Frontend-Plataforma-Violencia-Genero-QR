@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "Montserrat", sans-serif;
   height: 100%;
 }
 
@@ -10,18 +10,6 @@ body {
 }
 
 
-
-/*HOME*/
-.fondo-home {
-  background-color: #9d2449;
-  color: #ffffff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem;
-}
 
 .btn-gob {
   background-color: #ddc9a3;
@@ -105,6 +93,11 @@ body {
   min-height: 100vh;
 }
 
+.text-reg {
+  font-size: 40px;
+  font-weight: 700;
+}
+
 form input,
 form select,
 form textarea {
@@ -123,6 +116,12 @@ button.btn-danger:hover {
   background-color: #611232 !important;
 }
 
+.scroll-panel {
+  min-height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
 /* HOME */
 .home-gob {
   background-color: #f8f9fa;
@@ -130,7 +129,6 @@ button.btn-danger:hover {
   font-family: "Montserrat", sans-serif;
 }
 
-/* === Sección Hero === */
 .hero-section {
   background-color: #9d2449;
   color: #ffffff;
@@ -157,8 +155,6 @@ button.btn-danger:hover {
   border-radius: 8px;
   margin: 0 auto;
 }
-
-/* Botón estilo Gobierno */
 .btn-gob {
   background-color: #ddc9a3;
   border: none;
@@ -172,7 +168,6 @@ button.btn-danger:hover {
   background-color: #c0a56b;
 }
 
-/* === Sección Plataforma === */
 .platform-section {
   background-color: #ffffff;
   padding: 4rem 0;
@@ -202,7 +197,6 @@ button.btn-danger:hover {
   margin-bottom: 1rem;
 }
 
-/* === Sección Campañas === */
 .campaigns-section {
   background-color: #f3f3f3;
 }
