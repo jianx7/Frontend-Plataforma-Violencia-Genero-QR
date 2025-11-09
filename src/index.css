@@ -10,28 +10,6 @@ body {
 }
 
 
-
-.btn-gob {
-  background-color: #ddc9a3;
-  border: none;
-  color: #13322b;
-  font-weight: bold;
-  padding: 0.8rem 2rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  transition: background-color 0.3s ease;
-}
-
-.btn-gob:hover {
-  background-color: #c0a56b;
-}
-
-.card-home {
-  height: 500px;
-  padding: 30px;
-}
-
 /* LOGIN*/
 .btn-login {
   background-color: #611232;
@@ -90,20 +68,21 @@ body {
 /* REGISTER */
 .bg-register {
   background-color: #611232;
-  min-height: 100vh;
 }
 
-.text-reg {
+.text-register {
   font-size: 40px;
   font-weight: 700;
 }
 
-form input,
-form select,
-form textarea {
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  padding: 0.6rem;
+.form-scroll {
+  overflow-y: auto;
+  min-height: 0; 
+  padding: 10px; 
+}
+
+@supports (scrollbar-gutter: stable) {
+  .overflow-auto { scrollbar-gutter: stable; }
 }
 
 button.btn-danger {
@@ -116,11 +95,12 @@ button.btn-danger:hover {
   background-color: #611232 !important;
 }
 
-.scroll-panel {
-  min-height: 100vh;
-  overflow-y: auto;
-  scrollbar-width: thin;
-}
+/* Responsive: en móviles deja que toda la página haga scroll normal 
+@media (max-width: 767.98px) {
+  main.vh-100 { height: auto; }        /* quita el layout fijo 
+  .overflow-auto { overflow: visible; } /* scroll de página completo 
+} 
+*/
 
 /* HOME */
 .home-gob {

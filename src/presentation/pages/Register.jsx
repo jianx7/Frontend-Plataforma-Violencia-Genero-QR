@@ -9,13 +9,13 @@ import {
 
 export default function Register() {
   return (
-    <main className="min-vh-100 d-flex align-items-center">
-      <Container fluid>
-        <Row className="align-items-center">
+    <main className="vh-100">
+      <Container fluid className="h-100 px-0">
+        <Row className="h-100">
           {/* Panel izquierdo */}
-          <Col
+          <Col 
             md={6}
-            className="bg-register text-light p-5 d-flex flex-column justify-content-center"
+            className="bg-register text-light p-5 d-flex flex-column justify-content-center h-100"
           >
             <h1 className="fw-bold mb-4 fs-1">¡Bienvenida!</h1>
             <p className="lead mb-4 fs-3">
@@ -35,10 +35,10 @@ export default function Register() {
           {/* Panel derecho */}
           <Col
             md={6}
-            className="p-5 d-flex flex-column justify-content-center"
+            className="p-5 d-flex flex-column h-100 overflow-hidden"
           >
-            <Form className="form-gob">
-              <h2 className="text-reg mb-3">Crea tu cuenta</h2>
+            <Form className="form-gob form-scroll flex-gorw-1">
+              <h2 className="text-register mb-3">Crea tu cuenta</h2>
               <p className="mb-4 fs-3">
                 Ingresa los siguientes datos para iniciar el proceso de
                 registro:
