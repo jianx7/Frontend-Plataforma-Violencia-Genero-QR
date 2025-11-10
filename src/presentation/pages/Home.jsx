@@ -1,4 +1,6 @@
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
+import Chatbot from "./Chatbot";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -12,9 +14,12 @@ export default function Home() {
               No estás sola. <br />
               Te ayudamos a realizar tu pre-denuncia y recibir apoyo de forma segura.
             </p>
-            <Button className="btn-gob px-4 py-2">
-              Iniciar chat de orientación
-            </Button>
+            <Link to={"/chatbot"}>
+              <Button className="btn-gob px-4 py-2">
+                Iniciar chat de orientación
+              </Button>
+            </Link>
+
           </Col>
 
           <Col md={5} className="text-center">

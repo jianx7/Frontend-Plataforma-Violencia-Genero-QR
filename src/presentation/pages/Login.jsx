@@ -10,6 +10,7 @@ export default function Login() {
     return (
         <main className="min-vh-100 d-flex align-items-center">
             <Container fluid>
+                
                 <Row className="align-items-center">
                     {/* Columna izquierda: Imagen */}
                     <Col
@@ -28,6 +29,7 @@ export default function Login() {
                                 className="img-fluid rounded"
                             />
                         </article>
+                        
                     </Col>
 
                     {/* Columna derecha: formulario */}
@@ -49,6 +51,7 @@ export default function Login() {
                                     size="lg" type="email"
                                     placeholder="correo@mail.com"
                                     required
+                                    style={{height:'50px'}}
                                 />
                             </FloatingLabel>
 

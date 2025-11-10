@@ -5,10 +5,15 @@ body {
   height: 100%;
 }
 
-.footer {
+/*FOOTERr*/
+.footer-custom {
+  background-color: #611232;
+  text-align: center;
+  color: #ffffff;
+  font-size: 14px;
   margin-top: auto;
+  padding: 30px;
 }
-
 
 
 /*HOME*/
@@ -44,59 +49,58 @@ body {
   padding: 30px;
 }
 
-/* LOGIN*/
-.btn-login {
-  background-color: #611232;
-  color: white;
+.btn-flotante {
+  position: fixed;
+  bottom: 30px;
+  /* separación desde abajo */
+  right: 30px;
+  /* separación desde la derecha */
+  width: 60px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
   border: none;
-  font-size: 1rem;
-  border-radius: 8px;
-  width: 100px;
-  margin-bottom: 50px;
+  background-color: #232525;
+  align-items: center;
+  z-index: 1050;
+  /* por encima del contenido */
 }
 
-.btn-login:hover {
-  background-color: #611232;
-}
-
-.bg-login-blur {
-  background-image: url("presentation/assets/login.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: blur(4px);
-  /* desenfoque */
-  height: 100%;
-  height: 100%;
-  width: 100%
-}
-
-.bg-login-overlay {
-  position: relative;
-  z-index: 1;
-  /* el contenido irá encima del fondo */
+.btn-flotante:hover{
+  background-color: #383838;
 }
 
 
+/*NAVBAR*/
 .navbar-custom {
-  background-color: #611232;
+  background-color: #611232 !important;
+  padding: 30px !important;
 }
 
-.navbar-custom .nav-link,
-.navbar-custom .navbar-brand {
-  color: #ffffff;
-  font-weight: 500;
+.navbar-toggler {
+  border: none !important;
 }
 
-.navbar-custom:hover {
-  color: #ffffff;
-}
-
-.footer-custom {
-  background-color: #611232;
+/* Alinea el contenido y evitar que se salga en móvil */
+.navbar-collapse {
+  background-color: #611232; 
   text-align: center;
-  color: #ffffff;
-  font-size: 14px;
+  font-size: 16px;
+}
+
+.navbar-brand{
+  margin-right: 30px;
+  font-size: 20px;
+}
+
+/* Espaciado más pequeño en móvil */
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 15px;
+  }
+  .nav-link {
+    margin: 0.3rem 0;
+  }
 }
 
 /* REGISTER */
@@ -168,6 +172,7 @@ button.btn-danger:hover {
   font-size: 1.1rem;
   transition: all 0.3s ease;
 }
+
 .btn-gob:hover {
   background-color: #c0a56b;
 }
@@ -228,4 +233,25 @@ button.btn-danger:hover {
   background-color: #e0e0e0;
   height: 150px;
   border-radius: 8px;
+}
+
+/*CHATBOT*/
+.send {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 50px !important;
+  height: 40px !important;
+}
+
+.input-focus:focus {
+  border-color: #c0a56b;
+  box-shadow: 0 0 0 0.25rem rgba(192, 165, 107, 0.5) !important;
+  outline: 0 !important;
+}
+
+
+/*chat*/
+.bg-chat{
+  background-color: #DDC9A3;
 }
