@@ -3,7 +3,7 @@ import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-export default function navbar() {
+export default function AppNavbar() {
   return (
     <Navbar expand="md" variant="dark" className="navbar-custom">
       <Container>
@@ -19,9 +19,12 @@ export default function navbar() {
             <Nav.Link as={Link} to="/directorio">Directorio</Nav.Link>
              <Nav.Link as={Link} to="/ayuda">Ayuda</Nav.Link>
           </Nav>
-          <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/login">Perfil</Nav.Link>
-          </Nav>
+          <NavDropdown title="Perfil" id="navbarDropdown" className="ms-auto">
+            <h3 className="text-center">Nombre</h3>
+              <NavDropdown.Item as={Link} to="/perfil/user-info">Información de la cuenta</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/perfil/security">Sesión y seguridad</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/perfil/logout">Cerrar sesión</NavDropdown.Item>
+            </NavDropdown>
         </Navbar.Collapse>
       </Container>
     </Navbar >
