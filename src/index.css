@@ -195,8 +195,6 @@ button.btn-danger:hover {
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
 }
-
-
 .btn-gob {
   background-color: #ddc9a3;
   border: none;
@@ -211,58 +209,18 @@ button.btn-danger:hover {
   background-color: #c0a56b;
 }
 
-.platform-section {
-  background-color: #ffffff;
-  padding: 4rem 0;
+/* FOOTER */
+.footer-custom a {
+  color: white !important;
+  text-decoration: none;
+  transition: opacity 0.2s ease-in-out;
 }
 
-.platform-title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #13322b;
+.footer-custom a:hover {
+  opacity: 0.8;
 }
 
-.option-card {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 1rem;
-  transition: transform 0.2s ease;
-}
-
-.option-card:hover {
-  transform: translateY(-5px);
-}
-
-.option-img {
-  background-color: #eaeaea;
-  height: 150px;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.campaigns-section {
-  background-color: #f3f3f3;
-}
-
-.campaign-title {
-  font-weight: 700;
-  color: #9d2449;
-  margin-bottom: 1rem;
-}
-
-.campaign-text {
-  font-size: 1.1rem;
-  color: #13322b;
-}
-
-.campaign-img {
-  background-color: #ddc9a3;
-  height: 250px;
-  border-radius: 8px;
-}
-
-.mini-card {
-  background-color: #e0e0e0;
-  height: 150px;
-  border-radius: 8px;
+.footer-input {
+  width: 400px;
+  justify-content: center;
 }
