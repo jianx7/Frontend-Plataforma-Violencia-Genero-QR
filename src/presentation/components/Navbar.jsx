@@ -21,9 +21,9 @@ export default function AppNavbar() {
           </Nav>
           <NavDropdown title="Perfil" id="navbarDropdown" className="ms-auto">
             <h3 className="text-center">Nombre</h3>
-              <NavDropdown.Item as={Link} to="/perfil/user-info">Información de la cuenta</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/perfil/security">Sesión y seguridad</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/perfil/logout">Cerrar sesión</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/user-info">Información de la cuenta</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/security">Sesión y seguridad</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/logout">Cerrar sesión</NavDropdown.Item>
             </NavDropdown>
         </Navbar.Collapse>
       </Container>

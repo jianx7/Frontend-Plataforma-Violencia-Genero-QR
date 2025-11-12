@@ -227,11 +227,7 @@ button.btn-danger:hover {
 
 /* SIDEBAR */
 .bg-gob-dark {
-  background-color: #1a237e !important; /* Azul institucional */
-}
-
-.btn-gob:hover {
-  background-color: #002244 !important;
+  background-color: #611232 !important; /* Azul institucional */
 }
 
 .sidebar {
