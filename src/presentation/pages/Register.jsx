@@ -18,18 +18,11 @@ export default function Register() {
             className="bg-register text-light p-5 d-flex flex-column justify-content-center h-100"
           >
             <h1 className="fw-bold mb-4 fs-1">¡Bienvenida!</h1>
-            <p className="lead mb-4 fs-3">
+            <p className="lead mb-4 fs-4">
               Esta plataforma digital busca apoyar y orientar a mujeres en
               situaciones de violencia. Regístrate para acceder a nuestros
               recursos y servicios.
             </p>
-            <article>
-              <img
-                src="/assets/imagen-bienvenida.png"
-                alt="Imagen institucional"
-                className="img-fluid rounded"
-              />
-            </article>
           </Col>
 
           {/* Panel derecho */}
@@ -39,7 +32,7 @@ export default function Register() {
           >
             <Form className="form-gob form-scroll flex-gorw-1">
               <h2 className="text-register mb-3">Crea tu cuenta</h2>
-              <p className="mb-4 fs-3">
+              <p className="mb-4 fs-4">
                 Ingresa los siguientes datos para iniciar el proceso de
                 registro:
               </p>
@@ -54,7 +47,7 @@ export default function Register() {
               <Form.Group
                 controlId="floatingApellidos"
                 label="Apellidos"
-                className="mb-3 fs-4"
+                className="mb-3 fs-4 fw-semibold"
               >
                 <Form.Label>Apellidos</Form.Label>
                 <Form.Control
@@ -68,7 +61,7 @@ export default function Register() {
               <Form.Group
                 controlId="floatingNombre"
                 label="Nombre"
-                className="mb-3 fs-4"
+                className="mb-3 fs-4 fw-semibold"
               >
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
@@ -79,12 +72,12 @@ export default function Register() {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3 fs-4">
+              <Form.Group className="mb-3 fs-4 fw-semibold">
                 <Form.Label>Fecha de nacimiento</Form.Label>
                 <Form.Control size="lg" type="date" required />
               </Form.Group>
 
-              <Form.Group className="mb-3 fs-4" controlId="email">
+              <Form.Group className="mb-3 fs-4 fw-semibold" controlId="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   size="lg"
@@ -97,7 +90,7 @@ export default function Register() {
               <Form.Group
                 controlId="floatingPassword"
                 label="Contraseña"
-                className="mb-3 fs-4"
+                className="mb-3 fs-4 fw-semibold"
               >
                 <Form.Label>Contraseña</Form.Label>
                 <Form.Control

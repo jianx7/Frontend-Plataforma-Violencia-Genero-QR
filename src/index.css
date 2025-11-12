@@ -68,21 +68,45 @@ body {
 /* REGISTER */
 .bg-register {
   background-color: #611232;
+  background-image: url('/assets/imagen-bienvenida.png');
+  background-size: cover;
+  /* la imagen ocupa todo */
+  background-position: center;
+  /* centrada */
+  background-repeat: no-repeat;
 }
 
+/** .bg-register::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0,0,0,0.3);
+} */
+
+/** .bg-register::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); 
+}
+*/
+
 .text-register {
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 700;
 }
 
 .form-scroll {
   overflow-y: auto;
-  min-height: 0; 
-  padding: 10px; 
+  min-height: 0;
+  padding: 10px;
 }
 
 @supports (scrollbar-gutter: stable) {
-  .overflow-auto { scrollbar-gutter: stable; }
+  .overflow-auto {
+    scrollbar-gutter: stable;
+  }
 }
 
 button.btn-danger {
@@ -103,15 +127,59 @@ button.btn-danger:hover {
 */
 
 /* HOME */
-.home-gob {
-  background-color: #f8f9fa;
-  color: #13322b;
-  font-family: "Montserrat", sans-serif;
+.home-bg {
+  background-image: url('presentation/assets/imagen-bienvenida.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.hero-section {
-  background-color: #9d2449;
-  color: #ffffff;
+.carousel {
+  max-height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel img {
+  object-fit: cover;
+  height: 400px;
+  width: 100%;
+}
+
+.btn-circle {
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #611232;
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-circle:hover {
+  background-color: #9b1d50;
+}
+
+.circle-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.circle-text {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  max-width: 200px;
+  text-align: center;
+  color: #333;
+}
+
+.home-container {
   min-height: 80vh;
   display: flex;
   align-items: center;
@@ -128,13 +196,7 @@ button.btn-danger:hover {
   margin-bottom: 1.5rem;
 }
 
-.hero-img {
-  background-color: #ddc9a3;
-  width: 300px;
-  height: 300px;
-  border-radius: 8px;
-  margin: 0 auto;
-}
+
 .btn-gob {
   background-color: #ddc9a3;
   border: none;
@@ -144,6 +206,7 @@ button.btn-danger:hover {
   font-size: 1.1rem;
   transition: all 0.3s ease;
 }
+
 .btn-gob:hover {
   background-color: #c0a56b;
 }

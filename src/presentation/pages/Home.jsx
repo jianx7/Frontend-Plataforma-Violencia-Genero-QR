@@ -1,88 +1,138 @@
-import { Container, Row, Col, Button, Card } from "react-bootstrap";
+import { Container, Row, Col, Button, Card, Carousel } from "react-bootstrap";
+import { FaSearch } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className="home-gob">
-      {/* Sección de bienvenida */}
-      <Container fluid className="hero-section text-center py-5">
-        <Row className="align-items-center justify-content-center">
-          <Col md={6} className="text-md-start text-center">
+    <main>
+      {/* Sección 1 */}
+      <Container fluid className="py-5 home-container home-bg">
+        <Row className="justify-content-md-center">
+          <Col md={6} className="text-md-start w-100">
             <h1 className="hero-title">Bienvenida</h1>
             <p className="hero-text">
               No estás sola. <br />
-              Te ayudamos a realizar tu pre-denuncia y recibir apoyo de forma segura.
+              Te ayudamos a realizar tu pre-denuncia y recibir apoyo de forma
+              segura.
             </p>
             <Button className="btn-gob px-4 py-2">
               Iniciar chat de orientación
             </Button>
           </Col>
-
-          <Col md={5} className="text-center">
-            <div className="hero-img"></div>
-          </Col>
         </Row>
       </Container>
 
-      {/* Sección de plataforma */}
-      <section className="platform-section text-center py-5">
-        <h5 className="platform-subtitle">texto·texto</h5>
-        <h2 className="platform-title">
-          Plataforma Digital Contra la Violencia de Género en Quintana Roo
+      {/* Sección 2*/}
+      <Container fluid className="p-5 text-center">
+        <h4>CONOCE MÁS:</h4>
+        <h2>
+          <strong>
+            Plataforma Digital Contra la Violencia de Género en Quintana Roo
+          </strong>
         </h2>
+        <div className="p-4 d-flex flex-wrap justify-content-evenly gap-4 w-100">
+          <Card style={{ width: "18rem" }}>
+            <Card.Img
+              variant="top"
+              src="../src/presentation/assets/login.jpg"
+            />
+            <Button variant="light" size="lg">
+              Conoce tus derechos
+            </Button>
+          </Card>
 
-        <Row className="justify-content-center mt-4">
-          <Col md={3} className="mb-3">
-            <Card className="option-card">
-              <div className="option-img"></div>
-              <Card.Body>
-                <Card.Title>Iniciar denuncia</Card.Title>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={3} className="mb-3">
-            <Card className="option-card">
-              <div className="option-img"></div>
-              <Card.Body>
-                <Card.Title>Ver directorios de ayuda</Card.Title>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={3} className="mb-3">
-            <Card className="option-card">
-              <div className="option-img"></div>
-              <Card.Body>
-                <Card.Title>Consultar seguimiento</Card.Title>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </section>
+          <Card style={{ width: "18rem" }}>
+            <Card.Img
+              variant="top"
+              src="../src/presentation/assets/login.jpg"
+            />
+            <Button variant="light" size="lg">
+              Conoce tus derechos
+            </Button>
+          </Card>
 
-      {/* Sección de campañas */}
-      <section className="campaigns-section py-5">
-        <Container>
-          <Row className="align-items-center">
-            <Col md={5}>
-              <div className="campaign-img"></div>
-            </Col>
-            <Col md={6}>
-              <h2 className="campaign-title">Campañas del gobierno</h2>
-              <p className="campaign-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sapien,
-                et nisl, sagittis venenatis morbi montes scelerisque. Eget orci integer.
+          <Card style={{ width: "18rem" }}>
+            <Card.Img
+              variant="top"
+              src="../src/presentation/assets/login.jpg"
+            />
+            <Button variant="light" size="lg">
+              Conoce tus derechos
+            </Button>
+          </Card>
+        </div>
+      </Container>
+
+      {/* Sección 3*/}
+      <div className="carousel">
+        <Carousel fade>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="../src/presentation/assets/imagen-bienvenida.jpg"
+              alt="First slide"
+            />
+            <Carousel.Caption>
+              <h3>First slide label</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="../src/presentation/assets/imagen-bienvenida.jpg"
+              alt="First slide"
+            />
+            <Carousel.Caption>
+              <h3>Second slide label</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="../src/presentation/assets/imagen-bienvenida.jpg"
+              alt="First slide"
+            />
+            <Carousel.Caption>
+              <h3>Third slide label</h3>
+              <p>
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
               </p>
-            </Col>
-          </Row>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
+      </div>
 
-          <Row className="justify-content-center mt-4">
-            {[1, 2, 3].map((i) => (
-              <Col md={3} key={i} className="mb-3">
-                <Card className="mini-card"></Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-    </div>
+      {/* Sección 4*/}
+      <Container className="p-5 text-center">
+        <h4>INFORMACIÓN DE INTERÉS</h4>
+        <div className="p-4 d-flex flex-wrap justify-content-evenly gap-4 w-100">
+
+          <div className="circle-wrapper">
+            <Button className="btn-circle">
+            <FaSearch size={70} />
+          </Button>
+          <p className="circle-text">Instancias de la Mujer</p>
+          </div>
+          
+          <div className="circle-wrapper">
+            <Button className="btn-circle">
+            <FaSearch size={70} />
+          </Button>
+          <p className="circle-text">
+            Servicios de Prevención de la Violencia contra las Mujeres
+          </p>
+          </div>
+
+          <div className="circle-wrapper">
+            <Button className="btn-circle">
+            <FaSearch size={70} />
+          </Button>
+          <p className="circle-text">Investigaciones de Violencia de Género</p>
+          </div>
+          
+        </div>
+      </Container>
+    </main>
   );
 }
