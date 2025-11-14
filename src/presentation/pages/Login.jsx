@@ -4,19 +4,23 @@ import Container from "react-bootstrap/Container";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 
 export default function Login() {
     return (
         <main className="min-vh-100 d-flex align-items-center">
             <Container fluid>
-                
+
                 <Row className="align-items-center">
                     {/* Columna izquierda: Imagen */}
                     <Col
-                        md={6}
-                        className="bg-register text-light p-5 d-flex flex-column justify-content-center"
+                        sm={4} md={6}
+                        className="bg-register text-light p-5 d-flex flex-column justify-content-center position-relative"
                     >
+                        <Button className="btn-back" onClick={() => window.history.back()}>
+                            <IoMdArrowRoundBack color="#ffff" size={30} />
+                        </Button>
                         <h1 className="fw-bold mb-4 fs-1">¡Bienvenida!</h1>
                         <p className="lead mb-4 fs-5">
                             Esta plataforma digital busca apoyar y orientar a mujeres en
@@ -29,12 +33,12 @@ export default function Login() {
                                 className="img-fluid rounded"
                             />
                         </article>
-                        
+
                     </Col>
 
                     {/* Columna derecha: formulario */}
                     <Col
-                        md={6}
+                        sm={8} md={6}
                         className="p-5">
 
                         <h2 className="fw-bold mb-2 fs-1">Bienvenida a GITASVG-QR</h2>
@@ -51,7 +55,7 @@ export default function Login() {
                                     size="lg" type="email"
                                     placeholder="correo@mail.com"
                                     required
-                                    style={{height:'50px'}}
+                                    style={{ height: '50px' }}
                                 />
                             </FloatingLabel>
 

@@ -25,7 +25,6 @@ export default function HomePanel() {
                     }
                 >
                     <Button
-                        //variant="dark"
                         onClick={handleShow}
                         className="btn-flotante rounded-circle shadow"
                     >

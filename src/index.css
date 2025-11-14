@@ -52,9 +52,7 @@ body {
 .btn-flotante {
   position: fixed;
   bottom: 30px;
-  /* separación desde abajo */
   right: 30px;
-  /* separación desde la derecha */
   width: 60px;
   height: 56px;
   display: flex;
@@ -66,7 +64,7 @@ body {
   /* por encima del contenido */
 }
 
-.btn-flotante:hover{
+.btn-flotante:hover {
   background-color: #383838;
 }
 
@@ -83,12 +81,12 @@ body {
 
 /* Alinea el contenido y evitar que se salga en móvil */
 .navbar-collapse {
-  background-color: #611232; 
+  background-color: #611232;
   text-align: center;
   font-size: 16px;
 }
 
-.navbar-brand{
+.navbar-brand {
   margin-right: 30px;
   font-size: 20px;
 }
@@ -98,6 +96,7 @@ body {
   .navbar-brand {
     font-size: 15px;
   }
+
   .nav-link {
     margin: 0.3rem 0;
   }
@@ -125,6 +124,27 @@ button.btn-danger {
 
 button.btn-danger:hover {
   background-color: #611232 !important;
+}
+
+.btn-back {
+  background: transparent !important;
+  border: none !important;
+  position: absolute;
+  top: 40px;       
+  left: 20px;        
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.btn-back:hover,
+.btn-back:focus,
+.btn-back:active {
+  background: none !important;  
+  box-shadow: none !important;
+  border: none !important;
 }
 
 /* HOME */
@@ -252,6 +272,6 @@ button.btn-danger:hover {
 
 
 /*chat*/
-.bg-chat{
+.bg-chat {
   background-color: #DDC9A3;
 }
