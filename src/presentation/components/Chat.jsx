@@ -1,12 +1,11 @@
 import { useState } from "react";
-//import { useChat } from "../../domain/chatContext";
 import { Button, Offcanvas, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { FaRobot, } from "react-icons/fa";
 import Chatbot from "../pages/Chatbot";
 
 export default function HomePanel() {
     const [show, setShow] = useState();
-   // const {showOffcanvas, setShowOffcanvas}=useChat();
+
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -35,7 +34,7 @@ export default function HomePanel() {
 
 
             {/* Panel lateral*/}
-            <Offcanvas show={show} onHide={handleClose} placement="end" className="bg-offcanvas" >
+            <Offcanvas show={show} onHide={handleClose} placement="end"backdrop="false" className="custom" >
                 <Offcanvas.Body className="p-0">
                     <Chatbot />
                     {/* Botón de cerrar flotante */}

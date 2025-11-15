@@ -8,7 +8,7 @@ export default function CustomNavbar() {
     <Navbar
       expand="md"
       variant="dark"
-      className="navbar-custom" 
+      className="navbar-custom"
     >
       <Container>
         <Navbar.Brand className="fw-bold text-white navbar-brand">
@@ -32,6 +32,13 @@ export default function CustomNavbar() {
 
             <Nav.Link as={Link} to="/directorio" className="mx-md-4">Directorio</Nav.Link>
             <Nav.Link as={Link} to="/ayuda" className="mx-md-2">Ayuda</Nav.Link>
+
+            <NavDropdown title="Perfil" id="navbarDropdown" className="mx-md-4">
+              <h3 className="text-center">Nombre</h3>
+              <NavDropdown.Item as={Link} to="/user-info">Información de la cuenta</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/security">Sesión y seguridad</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/logout">Cerrar sesión</NavDropdown.Item>
+            </NavDropdown>
           </Nav>
 
           <Nav className="ms-md-auto text-center mt-2 mt-md-0">
@@ -39,6 +46,7 @@ export default function CustomNavbar() {
               <FaRegUserCircle size={24} />
             </Nav.Link>
           </Nav>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
-import { BsRobot, BsPerson } from "react-icons/bs";
+import { BsRobot } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
+import { chatService } from "../../domain/services/chatService";
+import { formatMarkdown } from "../utils/formatMarkdown";
 
 export default function Chatbot() {
 
@@ -16,17 +18,26 @@ export default function Chatbot() {
         e.preventDefault();
         if (!input.trim()) return;
 
+        // Agregar mensaje del usuario
         setMessages(prev => [...prev, { text: input, sender: 'user' }]);
+
         const currentInput = input;
         setInput('');
         setLoading(true);
 
         try {
+            // Llamada a la API
             const response = await chatService.sendMessage(userId, currentInput);
+
+            // Formatear Markdown usando tu función
+            const formattedText = formatMarkdown(response.response);
+
+            // Agregar respuesta del bot formateada
             setMessages(prev => [...prev, {
-                text: response.response,
+                text: formattedText,
                 sender: 'bot'
             }]);
+
         } catch (error) {
             setMessages(prev => [...prev, {
                 text: 'Error al procesar mensaje',
@@ -38,19 +49,16 @@ export default function Chatbot() {
         }
     };
 
-
     return (
         <Container fluid className="d-flex flex-column" style={{ height: "100%", width: "100%" }}>
-            {/* Encabezado */}
             <Row>
                 <Col
-                    className="d-flex align-items-center justify-content-between px-4 py-3"
+                    className="d-flex align-items-center justify-content-between px-4 py-2"
                     style={{
                         backgroundColor: "#611232",
                         color: "white",
                     }}
                 >
-                    {/* Avatar e info del bot */}
                     <div className="d-flex align-items-center">
                         <div
                             style={{
@@ -69,7 +77,7 @@ export default function Chatbot() {
 
                         <div>
                             <h5 className="mb-0 fw-bold">GITASVG-QR Bot</h5>
-                            <small className="text-light" style={{ fontSize: '10px' }}>
+                            <small className="text-light" style={{ fontSize: '12px' }}>
                                 <span
                                     style={{
                                         height: "10px",
@@ -89,19 +97,22 @@ export default function Chatbot() {
 
             {/* Contenedor del chat */}
             <Row className="flex-grow-1 justify-content-center mt-4 rounded-4">
-                {/*Chat actual*/}
-                <Col xs={12} md={12} lg={12}>
+                <Col xs={12}>
                     <Card className="shadow-lg">
-                        <Card.Body className="d-flex flex-column" style={{ height: "90vh" }}>
+                        <Card.Body className="d-flex flex-column" style={{ height: "88vh" }}>
+                            
                             {/* Mensajes */}
                             <div className="flex-grow-1 overflow-auto mb-3">
                                 {messages.map((msg, i) => (
                                     <div
                                         key={i}
-                                        className={`d-flex mb-3 ${msg.sender === "user" ? "justify-content-end" : "justify-content-start"
-                                            }`}
+                                        className={`d-flex mb-3 ${msg.sender === "user"
+                                            ? "justify-content-end"
+                                            : "justify-content-start"
+                                        }`}
                                     >
-                                        {/* Chatbot - izquierda */}
+
+                                        {/* BOT */}
                                         {msg.sender === "bot" && (
                                             <>
                                                 <BsRobot
@@ -112,45 +123,44 @@ export default function Chatbot() {
                                                 <div
                                                     className="bg-light border text-dark lead px-3 py-2 rounded-4"
                                                     style={{ maxWidth: "75%" }}
-                                                >
-                                                    {msg.text}
-                                                </div>
+                                                    dangerouslySetInnerHTML={{ __html: msg.text }}
+                                                ></div>
                                             </>
                                         )}
 
-                                        {/* Usuario - derecha */}
+                                        {/* USUARIO */}
                                         {msg.sender === "user" && (
-                                            <>
-                                                <div
-                                                    className="bg-chat lead px-3 py-2 rounded-4"
-                                                    style={{ maxWidth: "75%" }}
-                                                >
-                                                    {msg.text}
-                                                </div>
-
-                                            </>
+                                            <div
+                                                className="bg-chat lead px-3 py-2 rounded-4"
+                                                style={{ maxWidth: "75%" }}
+                                            >
+                                                {msg.text}
+                                            </div>
                                         )}
+
                                     </div>
                                 ))}
                             </div>
 
-                            {/* Input de texto */}
+                            {/* Input */}
                             <div className="d-flex">
                                 <Form.Control
                                     type="text"
                                     placeholder="Escribe tu mensaje..."
                                     className="me-2 rounded-4 input-focus"
-                                    style={{ fontSize: "14px" }}
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
-                                    onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                                    onKeyDown={(e) => e.key === "Enter" && handleSend(e)}
                                 />
                                 <Button
-                                    className="rounded-4 btn btn-primary btn-lg active send"
-                                    onClick={handleSend} disabled={loading}
-                                > {loading ? "..." : <IoSend size={20} />}
+                                    className="rounded-4 send"
+                                    onClick={handleSend}
+                                    disabled={loading}
+                                >
+                                    {loading ?  "..." : <IoSend size={20} />}
                                 </Button>
                             </div>
+
                         </Card.Body>
                     </Card>
                 </Col>
@@ -158,4 +168,5 @@ export default function Chatbot() {
         </Container>
     );
 }
+
 

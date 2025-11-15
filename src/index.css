@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "Montserrat", sans-serif;
   height: 100%;
 }
 
@@ -68,6 +68,18 @@ body {
   background-color: #383838;
 }
 
+.btn-flotante:focus,
+.btn-flotante:active:focus {
+  box-shadow: 0 0 0 0.25rem #383838 !important;
+  background-color: #383838;
+  ;
+}
+
+.offcanvas.custom {
+   --bs-offcanvas-width: 500px;
+}
+
+
 
 /*NAVBAR*/
 .navbar-custom {
@@ -105,15 +117,45 @@ body {
 /* REGISTER */
 .bg-register {
   background-color: #611232;
-  min-height: 100vh;
+  background-image: url('/assets/imagen-bienvenida.png');
+  background-size: cover;
+  /* la imagen ocupa todo */
+  background-position: center;
+  /* centrada */
+  background-repeat: no-repeat;
 }
 
-form input,
-form select,
-form textarea {
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  padding: 0.6rem;
+/** .bg-register::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0,0,0,0.3);
+} */
+
+/** .bg-register::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); 
+}
+*/
+
+.text-register {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.form-scroll {
+  overflow-y: auto;
+  min-height: 0;
+  padding: 10px;
+}
+
+@supports (scrollbar-gutter: stable) {
+  .overflow-auto {
+    scrollbar-gutter: stable;
+  }
 }
 
 button.btn-danger {
@@ -126,12 +168,19 @@ button.btn-danger:hover {
   background-color: #611232 !important;
 }
 
+/* Responsive: en móviles deja que toda la página haga scroll normal 
+@media (max-width: 767.98px) {
+  main.vh-100 { height: auto; }        /* quita el layout fijo 
+  .overflow-auto { overflow: visible; } /* scroll de página completo 
+} 
+*/
+
 .btn-back {
   background: transparent !important;
   border: none !important;
   position: absolute;
-  top: 40px;       
-  left: 20px;        
+  top: 40px;
+  left: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,22 +191,65 @@ button.btn-danger:hover {
 .btn-back:hover,
 .btn-back:focus,
 .btn-back:active {
-  background: none !important;  
+  background: none !important;
   box-shadow: none !important;
   border: none !important;
 }
 
 /* HOME */
-.home-gob {
-  background-color: #f8f9fa;
-  color: #13322b;
-  font-family: "Montserrat", sans-serif;
+.home-bg {
+  background-image: url('presentation/assets/imagen-bienvenida.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* === Sección Hero === */
-.hero-section {
-  background-color: #9d2449;
-  color: #ffffff;
+.carousel {
+  max-height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carousel img {
+  object-fit: cover;
+  height: 400px;
+  width: 100%;
+}
+
+.btn-circle {
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #611232;
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-circle:hover {
+  background-color: #9b1d50;
+}
+
+.circle-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.circle-text {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  max-width: 200px;
+  text-align: center;
+  color: #333;
+}
+
+.home-container {
   min-height: 80vh;
   display: flex;
   align-items: center;
@@ -174,15 +266,6 @@ button.btn-danger:hover {
   margin-bottom: 1.5rem;
 }
 
-.hero-img {
-  background-color: #ddc9a3;
-  width: 300px;
-  height: 300px;
-  border-radius: 8px;
-  margin: 0 auto;
-}
-
-/* Botón estilo Gobierno */
 .btn-gob {
   background-color: #ddc9a3;
   border: none;
@@ -193,66 +276,45 @@ button.btn-danger:hover {
   transition: all 0.3s ease;
 }
 
+
 .btn-gob:hover {
   background-color: #c0a56b;
 }
 
-/* === Sección Plataforma === */
-.platform-section {
-  background-color: #ffffff;
-  padding: 4rem 0;
+/* FOOTER */
+.footer-custom a {
+  color: white !important;
+  text-decoration: none;
+  transition: opacity 0.2s ease-in-out;
 }
 
-.platform-title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #13322b;
+.footer-custom a:hover {
+  opacity: 0.8;
 }
 
-.option-card {
-  border: 1px solid #ccc;
+.footer-input {
+  width: 400px;
+  justify-content: center;
+}
+
+/* SIDEBAR */
+.bg-gob-dark {
+  background-color: #611232 !important;
+  /* Azul institucional */
+}
+
+.sidebar {
+  min-height: 80vh;
+}
+
+.sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
   border-radius: 10px;
-  padding: 1rem;
-  transition: transform 0.2s ease;
 }
 
-.option-card:hover {
-  transform: translateY(-5px);
-}
-
-.option-img {
-  background-color: #eaeaea;
-  height: 150px;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-/* === Sección Campañas === */
-.campaigns-section {
-  background-color: #f3f3f3;
-}
-
-.campaign-title {
-  font-weight: 700;
-  color: #9d2449;
-  margin-bottom: 1rem;
-}
-
-.campaign-text {
-  font-size: 1.1rem;
-  color: #13322b;
-}
-
-.campaign-img {
-  background-color: #ddc9a3;
-  height: 250px;
-  border-radius: 8px;
-}
-
-.mini-card {
-  background-color: #e0e0e0;
-  height: 150px;
-  border-radius: 8px;
+.sidebar-item.active {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  font-weight: 600;
 }
 
 /*CHATBOT*/
@@ -262,6 +324,13 @@ button.btn-danger:hover {
   justify-content: center !important;
   width: 50px !important;
   height: 40px !important;
+  background-color: #611232;
+  border: none;
+}
+
+.send:hover {
+  background-color: #9d2449 !important;
+  border-color: #9d2449 !important;
 }
 
 .input-focus:focus {
