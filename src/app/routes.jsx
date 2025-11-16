@@ -6,6 +6,7 @@ import Layout from "../presentation/pages/Layout";
 import UserInfo from "../presentation/pages/UserInfo";
 import Security from "../presentation/pages/Security";
 import Logout from "../presentation/pages/Logout";
+import Directorio from "../presentation/pages/Directorio";
 
 export default function RoutesApp() {
   return (
@@ -17,6 +18,7 @@ export default function RoutesApp() {
       <Route path="/user-info" element={<UserInfo />} />
       <Route path="/security" element={<Security />} />
       <Route path="/logout" element={<Logout />}/>
+      <Route path="/directorio" element={<Directorio />}/>
       </Route>
 
       <Route path="/login" element={<Login />} />
