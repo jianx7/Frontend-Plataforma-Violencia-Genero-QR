@@ -3,10 +3,10 @@ import {
   Row,
   Col,
   Button,
-  Card,
   Carousel,
   Accordion,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { BiSolidBookBookmark } from "react-icons/bi";
 import { IoWoman } from "react-icons/io5";
 import { GoLaw } from "react-icons/go";
@@ -41,21 +41,36 @@ export default function Home() {
         </h2>
         <div className="p-4 d-flex flex-wrap justify-content-evenly gap-4 w-100">
           <div className="circle-wrapper">
-            <Button className="btn-circle">
+            <Button
+              className="btn-circle"
+              as={Link}
+              to="/directorio"
+              active={location.pathname === "/directorio"}
+            >
               <BiSolidBookBookmark size={68} />
             </Button>
             <p className="circle-text">Directorios de ayuda</p>
           </div>
 
           <div className="circle-wrapper">
-            <Button className="btn-circle">
+            <Button
+              className="btn-circle"
+              as={Link}
+              to="/instancias"
+              active={location.pathname === "/instancias"}
+            >
               <IoWoman size={70} />
             </Button>
             <p className="circle-text">Instancias de la mujer</p>
           </div>
 
           <div className="circle-wrapper">
-            <Button className="btn-circle">
+            <Button
+              className="btn-circle"
+              as={Link}
+              to="/derechos"
+              active={location.pathname === "/derechos"}
+            >
               <GoLaw size={70} />
             </Button>
             <p className="circle-text">Conoce tus derechos</p>
@@ -117,7 +132,10 @@ export default function Home() {
       </div>
 
       {/* Sección 4*/}
-      <Container fluid className="p-5 text-center space-section d-flex flex-column justify-content-center align-items-center">
+      <Container
+        fluid
+        className="p-5 text-center space-section d-flex flex-column justify-content-center align-items-center"
+      >
         <h2>
           <strong>Preguntas frecuentes</strong>
         </h2>
@@ -133,7 +151,7 @@ export default function Home() {
             </Accordion.Body>
           </Accordion.Item>
 
-          <Accordion.Item eventKey="1"  className="faq-accordion">
+          <Accordion.Item eventKey="1" className="faq-accordion">
             <Accordion.Header>
               <strong>¿Qué servicios ofrece?</strong>
             </Accordion.Header>
@@ -144,7 +162,7 @@ export default function Home() {
             </Accordion.Body>
           </Accordion.Item>
 
-          <Accordion.Item eventKey="2"  className="faq-accordion">
+          <Accordion.Item eventKey="2" className="faq-accordion">
             <Accordion.Header>
               <strong>¿Cómo puedo hacer una denuncia?</strong>
             </Accordion.Header>

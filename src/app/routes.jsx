@@ -7,6 +7,8 @@ import UserInfo from "../presentation/pages/UserInfo";
 import Security from "../presentation/pages/Security";
 import Logout from "../presentation/pages/Logout";
 import Directorio from "../presentation/pages/Directorio";
+import Instancias from "../presentation/pages/Instancias";
+import Derechos from "../presentation/pages/Derechos";
 
 export default function RoutesApp() {
   return (
@@ -19,6 +21,8 @@ export default function RoutesApp() {
       <Route path="/security" element={<Security />} />
       <Route path="/logout" element={<Logout />}/>
       <Route path="/directorio" element={<Directorio />}/>
+      <Route path="/instancias" element={<Instancias />}/>
+      <Route path="/derechos" element={<Derechos />}/>
       </Route>
 
       <Route path="/login" element={<Login />} />
