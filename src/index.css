@@ -5,59 +5,7 @@ body {
   height: 100%;
 }
 
-.footer {
-  margin-top: auto;
-}
-
-
-/* LOGIN*/
-.btn-login {
-  background-color: #611232;
-  color: white;
-  border: none;
-  font-size: 1rem;
-  border-radius: 8px;
-  width: 100px;
-  margin-bottom: 50px;
-}
-
-.btn-login:hover {
-  background-color: #611232;
-}
-
-.bg-login-blur {
-  background-image: url("presentation/assets/imagen-bienvenida.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: blur(4px);
-  /* desenfoque */
-  height: 100%;
-  height: 100%;
-  width: 100%
-}
-
-.bg-login-overlay {
-  position: relative;
-  z-index: 1;
-  /* el contenido irá encima del fondo */
-}
-
-
-.navbar-custom {
-  background-color: #611232;
-}
-
-.navbar-custom .nav-link,
-.navbar-custom .navbar-brand {
-  color: #ffffff;
-  font-weight: 500;
-}
-
-.navbar-custom:hover {
-  color: #ffffff;
-}
-
+/*FOOTERr*/
 .footer-custom {
   background-color: #611232;
   text-align: center;
@@ -119,6 +67,16 @@ body {
   background-color: #DDC9A3;
 }
 
+.bg-login-blur {
+  background-image: url("presentation/assets/imagen-bienvenida.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(4px);
+  /* desenfoque */
+  height: 100%;
+  height: 100%;
+  width: 100%
 .btn-flotante:focus,
 .btn-flotante:active:focus {
   box-shadow: 0 0 0 0.25rem #DDC9A3 !important;

@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { Link } from "react-router-dom";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function Login() {
   return (
@@ -13,9 +14,12 @@ export default function Login() {
         <Row className="h-100">
           {/* Columna izquierda: Imagen */}
           <Col
-            md={6}
-            className="bg-register text-light p-5 d-flex flex-column justify-content-center h-100"
+            sm={4} md={6}
+            className="bg-register text-light p-5 d-flex flex-column justify-content-center position-relative"
           >
+            <Button className="btn-back" onClick={() => window.history.back()}>
+                            <IoMdArrowRoundBack color="#ffff" size={30} />
+                        </Button>
             <h1 className="fw-bold mb-4 fs-1">¡Bienvenida!</h1>
             <p className="lead mb-4 fs-5">
               Esta plataforma digital busca apoyar y orientar a mujeres en
@@ -25,7 +29,7 @@ export default function Login() {
           </Col>
 
           {/* Columna derecha: formulario */}
-          <Col md={6} className="p-5 d-flex flex-column h-100 overflow-hidden">
+          <Col md={6} sm={8} className="p-5 d-flex flex-column h-100 overflow-hidden">
             <Form className="form-gob form-scroll flex-gorw-1">
               <h2 className="text-register mb-3">Bienvenida a GITASVG-QR</h2>
               <p className="mb-4 fs-4">Inicio de Sesión</p>
