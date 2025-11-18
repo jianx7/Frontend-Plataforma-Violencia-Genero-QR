@@ -26,7 +26,7 @@ body {
 }
 
 .bg-login-blur {
-  background-image: url("presentation/assets/login.jpg");
+  background-image: url("presentation/assets/imagen-bienvenida.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -68,11 +68,9 @@ body {
 /* REGISTER */
 .bg-register {
   background-color: #611232;
-  background-image: url('/assets/imagen-bienvenida.png');
+  background-image: url('/assets/mesh-gradient.png');
   background-size: cover;
-  /* la imagen ocupa todo */
   background-position: center;
-  /* centrada */
   background-repeat: no-repeat;
 }
 
@@ -231,6 +229,20 @@ button.btn-danger:hover {
   width: 800px;         
 }
 
+/* CARTILLA DE DERECHOS  */
+.cartilla {
+  max-width: 800px;
+  height: 300px;
+}
+
+.cartilla img {
+  object-fit: cover;
+  object-position: center;
+} 
+
+.page-content {
+  padding-bottom: 150px; 
+}
 
 /* FOOTER */
 .footer-custom a {

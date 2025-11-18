@@ -1,86 +1,89 @@
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-
+import { Link } from "react-router-dom";
 
 export default function Login() {
-    return (
-        <main className="min-vh-100 d-flex align-items-center">
-            <Container fluid>
-                <Row className="align-items-center">
-                    {/* Columna izquierda: Imagen */}
-                    <Col
-                        md={6}
-                        className="bg-register text-light p-5 d-flex flex-column justify-content-center"
-                    >
-                        <h1 className="fw-bold mb-4 fs-1">¡Bienvenida!</h1>
-                        <p className="lead mb-4 fs-5">
-                            Esta plataforma digital busca apoyar y orientar a mujeres en
-                            situaciones de violencia. Inicia sesión para recibir la atención adecuada.
-                        </p>
-                        <article>
-                            <img
-                                src="/assets/imagen-bienvenida.png"
-                                alt="Imagen institucional"
-                                className="img-fluid rounded"
-                            />
-                        </article>
-                    </Col>
+  return (
+    <main className="vh-100">
+      <Container fluid className="h-100 px-0">
+        <Row className="h-100">
+          {/* Columna izquierda: Imagen */}
+          <Col
+            md={6}
+            className="bg-register text-light p-5 d-flex flex-column justify-content-center h-100"
+          >
+            <h1 className="fw-bold mb-4 fs-1">¡Bienvenida!</h1>
+            <p className="lead mb-4 fs-5">
+              Esta plataforma digital busca apoyar y orientar a mujeres en
+              situaciones de violencia. Inicia sesión para recibir la atención
+              adecuada.
+            </p>
+          </Col>
 
-                    {/* Columna derecha: formulario */}
-                    <Col
-                        md={6}
-                        className="p-5">
+          {/* Columna derecha: formulario */}
+          <Col md={6} className="p-5 d-flex flex-column h-100 overflow-hidden">
+            <Form className="form-gob form-scroll flex-gorw-1">
+              <h2 className="text-register mb-3">Bienvenida a GITASVG-QR</h2>
+              <p className="mb-4 fs-4">Inicio de Sesión</p>
+              <FloatingLabel
+                controlId="floatingEmail"
+                label="Correo electrónico"
+                className="mb-3 fs-5"
+              >
+                <Form.Control
+                  size="lg"
+                  type="email"
+                  placeholder="correo@mail.com"
+                  required
+                />
+              </FloatingLabel>
 
-                        <h2 className="fw-bold mb-2 fs-1">Bienvenida a GITASVG-QR</h2>
-                        <p className="mb-4 fs-4">Inicio de Sesión</p>
+              <FloatingLabel
+                controlId="floatingPassword"
+                label="Contraseña"
+                className="mb-3 fs-5"
+              >
+                <Form.Control
+                  size="lg"
+                  type="password"
+                  placeholder="Ingrese su contraseña"
+                  required
+                />
+              </FloatingLabel>
 
-                        <Form className="form-gob">
+              <Link
+                  to="/recuperar"
+                  className={location.pathname === "/recuperar" ? "active" : ""}
+                >
+                  ¿Olvidaste la contaseña?
+                </Link>
 
-                            <FloatingLabel
-                                controlId="floatingEmail"
-                                label="Correo electrónico"
-                                className="mb-3 fs-5"
-                            >
-                                <Form.Control
-                                    size="lg" type="email"
-                                    placeholder="correo@mail.com"
-                                    required
-                                />
-                            </FloatingLabel>
+              <Button
+                variant="danger"
+                type="submit"
+                size="lg"
+                className="w-100 fw-bold mt-4"
+              >
+                Entrar
+              </Button>
 
-                            <FloatingLabel
-                                controlId="floatingPassword"
-                                label="Contraseña"
-                                className="mb-3 fs-5"
-                            >
-                                <Form.Control
-                                    size="lg" type="password"
-                                    placeholder="Ingrese su contraseña"
-                                    required
-                                />
-                            </FloatingLabel>
-
-                            <a className="text-secondary" href="/recuperar">¿Olvidaste tu contraseña?</a>
-
-                            <Button
-                                variant="danger"
-                                type="submit"
-                                size="lg"
-                                className="w-100 fw-bold mt-4">
-                                Entrar
-                            </Button>
-
-                            <p className="mt-4 text-center">¿No tienes una cuenta? <a href="/register">Regístrate</a></p>
-                        </Form>
-                    </Col>
-                </Row>
-            </Container >
-        </main>
-    );
+              <p className="mt-4 text-center">
+                ¿No tienes una cuenta?{" "}
+                <Link
+                  to="/register"
+                  className={location.pathname === "/register" ? "active" : ""}
+                >
+                  Regístrate
+                </Link>
+              </p>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    </main>
+  );
 }
-
-
