@@ -8,6 +8,7 @@ import Predenuncia from "../presentation/pages/Predenuncia"
 import UserInfo from "../presentation/pages/UserInfo";
 import Security from "../presentation/pages/Security";
 import Logout from "../presentation/pages/Logout";
+import Seguimiento from "../presentation/pages/Seguimiento";
 
 export default function RoutesApp() {
   return (
@@ -21,6 +22,7 @@ export default function RoutesApp() {
           <Route path="/logout" element={<Logout />} /> 
           <Route path="/predenuncia" element={<Predenuncia />} />
           <Route path="/chatbot" element={<Chatbot />} />
+          <Route path="/seguimiento" element={<Seguimiento/>}/>
         </Route>
 
         <Route path="/login" element={<Login />} />

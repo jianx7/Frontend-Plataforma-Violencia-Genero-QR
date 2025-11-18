@@ -1,22 +1,23 @@
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import FloatingLabel from "react-bootstrap/FloatingLabel";
+import {
+    FloatingLabel,
+    Container,
+    Row,
+    Col,
+    Form,
+    Button,
+} from "react-bootstrap";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
 
 export default function Login() {
     return (
-        <main className="min-vh-100 d-flex align-items-center">
-            <Container fluid>
-
-                <Row className="align-items-center">
+        <main className="vh-100 ">
+            <Container fluid className="h-100 px-0">
+                <Row className="h-100">
                     {/* Columna izquierda: Imagen */}
                     <Col
-                        sm={4} md={6}
-                        className="bg-register text-light p-5 d-flex flex-column justify-content-center position-relative"
+                        sm={5} md={6}
+                        className="bg-register text-light p-5 d-flex flex-column justify-content-center h-100"
                     >
                         <Button className="btn-back" onClick={() => window.history.back()}>
                             <IoMdArrowRoundBack color="#ffff" size={30} />
@@ -26,25 +27,24 @@ export default function Login() {
                             Esta plataforma digital busca apoyar y orientar a mujeres en
                             situaciones de violencia. Inicia sesión para recibir la atención adecuada.
                         </p>
-                        <article>
+                        {/*<article>
                             <img
                                 src="/assets/imagen-bienvenida.png"
                                 alt="Imagen institucional"
                                 className="img-fluid rounded"
                             />
-                        </article>
+                        </article>*/}
 
                     </Col>
 
                     {/* Columna derecha: formulario */}
                     <Col
-                        sm={8} md={6}
-                        className="p-5">
+                        sm={7} md={6}
+                        className="p-5 d-flex justify-content-center align-items-center h-100">
 
-                        <h2 className="fw-bold mb-2 fs-1">Bienvenida a GITASVG-QR</h2>
-                        <p className="mb-4 fs-4">Inicio de Sesión</p>
-
-                        <Form className="form-gob">
+                        <Form className="form-gob w-100">
+                            <h2 className="fw-bold mb-2 fs-1">Bienvenida a GITASVG-QR</h2>
+                            <p className="mb-4 fs-4">Inicio de Sesión</p>
 
                             <FloatingLabel
                                 controlId="floatingEmail"
@@ -71,7 +71,7 @@ export default function Login() {
                                 />
                             </FloatingLabel>
 
-                            <a className="text-secondary" href="/recuperar">¿Olvidaste tu contraseña?</a>
+                            <a href="/recuperar">¿Olvidaste tu contraseña?</a>
 
                             <Button
                                 variant="danger"
@@ -81,7 +81,7 @@ export default function Login() {
                                 Entrar
                             </Button>
 
-                            <p className="mt-4 text-center">¿No tienes una cuenta? <a href="/register">Regístrate</a></p>
+                            <p className="mt-4 text-center fw-semibold">¿No tienes una cuenta? <a href="/register">Regístrate</a></p>
                         </Form>
                     </Col>
                 </Row>
