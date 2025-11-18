@@ -24,9 +24,12 @@ export default function Home() {
               Te ayudamos a realizar tu pre-denuncia y recibir apoyo de forma
               segura.
             </p>
-            <Button className="btn-gob px-4 py-2">
-              Iniciar chat de orientación
-            </Button>
+            <Link to={"/chatbot"}>
+              <Button className="btn-gob px-4 py-2">
+                Iniciar chat de orientación
+              </Button>
+            </Link>
+
           </Col>
         </Row>
       </Container>

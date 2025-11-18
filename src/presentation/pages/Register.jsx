@@ -6,6 +6,7 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 import { Link } from "react-router-dom";
 
@@ -15,10 +16,13 @@ export default function Register() {
       <Container fluid className="h-100 px-0">
         <Row className="h-100">
           {/* Panel izquierdo */}
-          <Col 
-            md={6}
+          <Col
+            sm={5} md={6}
             className="bg-register text-light p-5 d-flex flex-column justify-content-center h-100"
           >
+            <Button className="btn-back" onClick={() => window.history.back()}>
+              <IoMdArrowRoundBack color="#ffff" size={30} />
+            </Button>
             <h1 className="fw-bold mb-4 fs-1">¡Bienvenida!</h1>
             <p className="lead mb-4 fs-5">
               Esta plataforma digital busca apoyar y orientar a mujeres en
@@ -29,10 +33,10 @@ export default function Register() {
 
           {/* Panel derecho */}
           <Col
-            md={6}
+            sm={7} md={6}
             className="p-5 d-flex flex-column h-100 overflow-hidden"
           >
-            <Form className="form-gob form-scroll flex-gorw-1">
+            <Form className="form-gob form-scroll flex-grow-1">
               <h2 className="text-register mb-3">Crea tu cuenta</h2>
               <p className="mb-4 fs-5">
                 Ingresa los siguientes datos para iniciar el proceso de

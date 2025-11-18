@@ -5,24 +5,66 @@ body {
   height: 100%;
 }
 
-.footer {
+/*FOOTERr*/
+.footer-custom {
+  background-color: #611232;
+  text-align: center;
+  color: #ffffff;
+  font-size: 14px;
   margin-top: auto;
+  padding: 30px;
 }
 
 
-/* LOGIN*/
-.btn-login {
-  background-color: #611232;
-  color: white;
+/*HOME*/
+.fondo-home {
+  background-color: #9d2449;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+
+.btn-gob {
+  background-color: #ddc9a3;
   border: none;
-  font-size: 1rem;
-  border-radius: 8px;
-  width: 100px;
-  margin-bottom: 50px;
+  color: #13322b;
+  font-weight: bold;
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
 }
 
-.btn-login:hover {
-  background-color: #611232;
+.btn-gob:hover {
+  background-color: #c0a56b;
+}
+
+.card-home {
+  height: 500px;
+  padding: 30px;
+}
+
+.btn-flotante {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  border: none;
+  background-color: #232525;
+  align-items: center;
+  z-index: 9999;
+}
+
+.btn-flotante:hover {
+  background-color: #383838;
 }
 
 .bg-login-blur {
@@ -37,32 +79,53 @@ body {
   width: 100%
 }
 
-.bg-login-overlay {
-  position: relative;
-  z-index: 1;
-  /* el contenido irá encima del fondo */
+.offcanvas.custom {
+  --bs-offcanvas-width: 500px;
 }
 
 
+
+/*NAVBAR*/
 .navbar-custom {
-  background-color: #611232;
+  background-color: #611232 !important;
+  padding: 30px !important;
+  overflow: visible !important;
 }
 
-.navbar-custom .nav-link,
-.navbar-custom .navbar-brand {
-  color: #ffffff;
-  font-weight: 500;
+
+.navbar-toggler {
+  border: none !important;
 }
 
-.navbar-custom:hover {
-  color: #ffffff;
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
-.footer-custom {
+/* Alinea el contenido y evitar que se salga en móvil */
+.navbar-collapse {
   background-color: #611232;
   text-align: center;
-  color: #ffffff;
-  font-size: 14px;
+  font-size: 16px;
+  overflow: visible !important;
+}
+
+.navbar-brand {
+  margin-right: 30px;
+  font-size: 20px;
+}
+
+/* Espaciado más pequeño en móvil */
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 15px;
+  }
+
+  .nav-link {
+    margin: 0.3rem 0;
+  }
 }
 
 /* REGISTER */
@@ -124,6 +187,27 @@ button.btn-danger:hover {
 } 
 */
 
+.btn-back {
+  background: transparent !important;
+  border: none !important;
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.btn-back:hover,
+.btn-back:focus,
+.btn-back:active {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
 /* HOME */
 .home-bg {
   background-image: url('presentation/assets/bg-home.jpg');
@@ -184,6 +268,7 @@ button.btn-danger:hover {
   margin-bottom: 1.5rem;
   color: #ffffff;
 }
+
 .btn-gob {
   background-color: #ddc9a3;
   border: none;
@@ -193,6 +278,7 @@ button.btn-danger:hover {
   font-size: 1.1rem;
   transition: all 0.3s ease;
 }
+
 
 .btn-gob:hover {
   background-color: #c0a56b;
@@ -262,7 +348,8 @@ button.btn-danger:hover {
 
 /* SIDEBAR */
 .bg-gob-dark {
-  background-color: #611232 !important; /* Azul institucional */
+  background-color: #611232 !important;
+  /* Azul institucional */
 }
 
 .sidebar {
@@ -291,4 +378,32 @@ button.btn-danger:hover {
 
 .dash-text {
   color: #611232;
+}
+
+/*CHATBOT*/
+.send {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 50px !important;
+  height: 40px !important;
+  background-color: #611232;
+  border: none;
+}
+
+.send:hover {
+  background-color: #9d2449 !important;
+  border-color: #9d2449 !important;
+}
+
+.input-focus:focus {
+  border-color: #c0a56b;
+  box-shadow: 0 0 0 0.25rem rgba(192, 165, 107, 0.5) !important;
+  outline: 0 !important;
+}
+
+
+/*chat*/
+.bg-chat {
+  background-color: #DDC9A3;
 }

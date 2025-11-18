@@ -16,10 +16,7 @@ export default function DashboardAdmin() {
       {/* Tarjetas de estadísticas */}
       <Row className="g-4 mt-2">
         <Col md={3}>
-          <StatCard title="Casos nuevos" value={3} variant="danger" />
-        </Col>
-        <Col md={3}>
-          <StatCard title="Urgentes" value={1} variant="warning" />
+          <StatCard title="Casos nuevos" value={3} variant="warning" />
         </Col>
         <Col md={3}>
           <StatCard title="Citas del día" value={4} variant="success" />
