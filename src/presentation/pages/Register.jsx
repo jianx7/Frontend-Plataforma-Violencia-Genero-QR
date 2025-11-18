@@ -8,6 +8,8 @@ import {
 } from "react-bootstrap";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
+import { Link } from "react-router-dom";
+
 export default function Register() {
   return (
     <main className="vh-100">
@@ -22,7 +24,7 @@ export default function Register() {
               <IoMdArrowRoundBack color="#ffff" size={30} />
             </Button>
             <h1 className="fw-bold mb-4 fs-1">¡Bienvenida!</h1>
-            <p className="lead mb-4 fs-4">
+            <p className="lead mb-4 fs-5">
               Esta plataforma digital busca apoyar y orientar a mujeres en
               situaciones de violencia. Regístrate para acceder a nuestros
               recursos y servicios.
@@ -36,12 +38,12 @@ export default function Register() {
           >
             <Form className="form-gob form-scroll flex-grow-1">
               <h2 className="text-register mb-3">Crea tu cuenta</h2>
-              <p className="mb-4 fs-4">
+              <p className="mb-4 fs-5">
                 Ingresa los siguientes datos para iniciar el proceso de
                 registro:
               </p>
 
-              <Form.Group controlId="formFileLg" className="mb-3 fs-4">
+              <Form.Group controlId="formFileLg" className="mb-3 fs-5">
                 <Form.Label className="fw-semibold">
                   Escanea tu INE para confirmar tu identidad
                 </Form.Label>
@@ -50,14 +52,27 @@ export default function Register() {
 
               <Form.Group
                 controlId="floatingApellidos"
-                label="Apellidos"
-                className="mb-3 fs-4 fw-semibold"
+                label="Apellido paterno"
+                className="mb-3 fs-5 fw-semibold"
               >
-                <Form.Label>Apellidos</Form.Label>
+                <Form.Label>Apellido paterno</Form.Label>
                 <Form.Control
                   size="lg"
                   type="text"
-                  placeholder="Escribe tus apellidos"
+                  placeholder="Escribe tu apellido paterno"
+                  required
+                />
+              </Form.Group>
+              <Form.Group
+                controlId="floatingApellidosM"
+                label="Apellido materno"
+                className="mb-3 fs-5 fw-semibold"
+              >
+                <Form.Label>Apellido materno</Form.Label>
+                <Form.Control
+                  size="lg"
+                  type="text"
+                  placeholder="Escribe tu apellido materno"
                   required
                 />
               </Form.Group>
@@ -65,7 +80,7 @@ export default function Register() {
               <Form.Group
                 controlId="floatingNombre"
                 label="Nombre"
-                className="mb-3 fs-4 fw-semibold"
+                className="mb-3 fs-5 fw-semibold"
               >
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
@@ -76,12 +91,12 @@ export default function Register() {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3 fs-4 fw-semibold">
+              <Form.Group className="mb-3 fs-5 fw-semibold">
                 <Form.Label>Fecha de nacimiento</Form.Label>
                 <Form.Control size="lg" type="date" required />
               </Form.Group>
 
-              <Form.Group className="mb-3 fs-4 fw-semibold" controlId="email">
+              <Form.Group className="mb-3 fs-5 fw-semibold" controlId="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   size="lg"
@@ -94,7 +109,7 @@ export default function Register() {
               <Form.Group
                 controlId="floatingPassword"
                 label="Contraseña"
-                className="mb-3 fs-4 fw-semibold"
+                className="mb-3 fs-5 fw-semibold"
               >
                 <Form.Label>Contraseña</Form.Label>
                 <Form.Control
@@ -105,45 +120,43 @@ export default function Register() {
                 />
               </Form.Group>
 
-              <Form.Text className="text-muted d-block mb-3 fs-5">
+              <Form.Text className="text-muted d-block mb-3 fs-6">
                 Debe tener al menos 9 caracteres, una mayúscula y un carácter
                 especial (*@_).
               </Form.Text>
 
-              <Form.Group controlId="terms" className="mb-3 fs-4">
-                <Form.Check
-                  type="checkbox"
-                  label={
-                    <>
-                      Acepto los{" "}
-                      <a href="#" className="fw-semibold">
-                        Términos y condiciones
-                      </a>{" "}
-                      y la{" "}
-                      <a href="#" className="fw-semibold">
-                        Política de privacidad
-                      </a>
-                      .
-                    </>
-                  }
+              <Form.Group
+                controlId="floatingPassword"
+                label="Contraseña"
+                className="mb-3 fs-5 fw-semibold"
+              >
+                <Form.Label>Confirmar contraseña</Form.Label>
+                <Form.Control
+                  size="lg"
+                  type="password"
+                  placeholder="Escribe tu contraseña"
                   required
                 />
               </Form.Group>
+
 
               <Button
                 variant="danger"
                 type="submit"
                 size="lg"
-                className="w-100 fw-bold fs-4"
+                className="w-100 fw-bold fs-5"
               >
                 Registrarse
               </Button>
 
-              <p className="mt-3 text-center fs-5">
+              <p className="mt-4 text-center">
                 ¿Ya tienes una cuenta?{" "}
-                <a href="/login" className="fw-semibold">
+                <Link
+                  to="/login"
+                  className={location.pathname === "/login" ? "active" : ""}
+                >
                   Inicia sesión
-                </a>
+                </Link>
               </p>
             </Form>
           </Col>

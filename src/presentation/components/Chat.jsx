@@ -29,7 +29,7 @@ export default function HomePanel() {
                         onClick={handleShow}
                         className="btn-flotante rounded-circle shadow"
                     >
-                        <RiRobot3Line size={40} color="white" /> {/* Icono*/}
+                        <RiRobot3Line size={40} color="black" /> {/* Icono*/}
                     </Button>
                 </OverlayTrigger>
             )}
