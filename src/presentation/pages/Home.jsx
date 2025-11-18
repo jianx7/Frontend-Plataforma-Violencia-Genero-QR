@@ -12,6 +12,7 @@ import { IoWoman } from "react-icons/io5";
 import { GoLaw } from "react-icons/go";
 
 export default function Home() {
+
   return (
     <main>
       {/* Sección 1 */}
@@ -24,6 +25,7 @@ export default function Home() {
               Te ayudamos a realizar tu pre-denuncia y recibir apoyo de forma
               segura.
             </p>
+            
             <Link to={"/chatbot"}>
               <Button className="btn-gob px-4 py-2">
                 Iniciar chat de orientación

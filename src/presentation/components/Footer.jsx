@@ -45,7 +45,7 @@ export default function Footer() {
               <Col md={4} className="text-start">
                 <h6 className="fw-semibold">Términos</h6>
                 <p className="small mb-0">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim accusamus nostrum autem eum nesciunt!
+                  Al acceder y utilizar esta aplicación web, el usuario acepta los presentes Términos y Condiciones. Si no está de acuerdo, debe abstenerse de utilizar la plataforma.
                 </p>
               </Col>
 
@@ -53,7 +53,7 @@ export default function Footer() {
               <Col md={4} className="text-start">
                 <h6 className="fw-semibold">Privacidad</h6>
                 <p className="small mb-0">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim accusamus nostrum autem eum nesciunt!
+                  Los datos personales serán conservados el tiempo necesario para cumplir con las finalidades antes mencionadas y conforme a lo establecido por la Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados.
                 </p>
               </Col>
             </Row>

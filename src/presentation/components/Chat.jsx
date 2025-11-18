@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { Button, Offcanvas, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { FaRobot, } from "react-icons/fa";
 import Chatbot from "../pages/Chatbot";
 import { RiRobot3Line } from "react-icons/ri";
 
 export default function HomePanel() {
     const [show, setShow] = useState();
 
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    
 
     return (
         <>
@@ -30,7 +29,7 @@ export default function HomePanel() {
                         onClick={handleShow}
                         className="btn-flotante rounded-circle shadow"
                     >
-                        <RiRobot3Line size={24} color="white" /> {/* Icono*/}
+                        <RiRobot3Line size={40} color="white" /> {/* Icono*/}
                     </Button>
                 </OverlayTrigger>
             )}

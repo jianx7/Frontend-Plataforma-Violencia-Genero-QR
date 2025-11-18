@@ -55,9 +55,9 @@ export default function CustomNavbar() {
               Directorio
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/ayuda" className="mx-md-2" onClick={() => setExpanded(false)}>
+            {/*<Nav.Link as={Link} to="/ayuda" className="mx-md-2" onClick={() => setExpanded(false)}>
               Ayuda
-            </Nav.Link>
+            </Nav.Link>*/}
 
             <NavDropdown title="Perfil" id="navbarDropdown2" className="mx-md-4">
               <h5 className="text-center">Usuario</h5>
