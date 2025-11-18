@@ -266,3 +266,17 @@ button.btn-danger:hover {
   background-color: rgba(255, 255, 255, 0.15) !important;
   font-weight: 600;
 }
+
+/* DASHBOARD DE ADMIN */
+.dashboard-container {
+  background-color: #f8f8f4;
+  min-height: 100vh;
+}
+
+.recent-table {
+  border-left: 4px solid #611232;
+}
+
+.dash-text {
+  color: #611232;
+}
