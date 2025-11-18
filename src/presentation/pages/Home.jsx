@@ -1,7 +1,15 @@
-//import Chatbot from "./Chatbot";
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Carousel,
+  Accordion,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, Button, Card, Carousel } from "react-bootstrap";
-import { FaSearch } from "react-icons/fa";
+import { BiSolidBookBookmark } from "react-icons/bi";
+import { IoWoman } from "react-icons/io5";
+import { GoLaw } from "react-icons/go";
 
 export default function Home() {
   return (
@@ -10,7 +18,7 @@ export default function Home() {
       <Container fluid className="py-5 home-container home-bg">
         <Row className="justify-content-md-center">
           <Col md={6} className="text-md-start w-100">
-            <h1 className="hero-title">Bienvenida</h1>
+            <h1 className="hero-title text-light">Bienvenida</h1>
             <p className="hero-text">
               No estás sola. <br />
               Te ayudamos a realizar tu pre-denuncia y recibir apoyo de forma
@@ -27,7 +35,7 @@ export default function Home() {
       </Container>
 
       {/* Sección 2*/}
-      <Container fluid className="p-5 text-center">
+      <Container className="p-5 text-center space-section d-flex flex-column justify-content-center align-items-center">
         <h4>CONOCE MÁS:</h4>
         <h2>
           <strong>
@@ -35,108 +43,139 @@ export default function Home() {
           </strong>
         </h2>
         <div className="p-4 d-flex flex-wrap justify-content-evenly gap-4 w-100">
-          <Card style={{ width: "18rem" }}>
-            <Card.Img
-              variant="top"
-              src="../src/presentation/assets/login.jpg"
-            />
-            <Button variant="light" size="lg">
-              Conoce tus derechos
+          <div className="circle-wrapper">
+            <Button
+              className="btn-circle"
+              as={Link}
+              to="/directorio"
+              active={location.pathname === "/directorio"}
+            >
+              <BiSolidBookBookmark size={68} />
             </Button>
-          </Card>
+            <p className="circle-text">Directorios de ayuda</p>
+          </div>
 
-          <Card style={{ width: "18rem" }}>
-            <Card.Img
-              variant="top"
-              src="../src/presentation/assets/login.jpg"
-            />
-            <Button variant="light" size="lg">
-              Conoce tus derechos
+          <div className="circle-wrapper">
+            <Button
+              className="btn-circle"
+              as={Link}
+              to="/instancias"
+              active={location.pathname === "/instancias"}
+            >
+              <IoWoman size={70} />
             </Button>
-          </Card>
+            <p className="circle-text">Instancias de la mujer</p>
+          </div>
 
-          <Card style={{ width: "18rem" }}>
-            <Card.Img
-              variant="top"
-              src="../src/presentation/assets/login.jpg"
-            />
-            <Button variant="light" size="lg">
-              Conoce tus derechos
+          <div className="circle-wrapper">
+            <Button
+              className="btn-circle"
+              as={Link}
+              to="/derechos"
+              active={location.pathname === "/derechos"}
+            >
+              <GoLaw size={70} />
             </Button>
-          </Card>
+            <p className="circle-text">Conoce tus derechos</p>
+          </div>
         </div>
       </Container>
 
-      {/* Sección 3*/}
-      <div className="carousel">
-        <Carousel fade>
+      {/* Sección 3 */}
+      <div className="carousel-banner">
+        <Carousel fade interval={3000} pause={false} indicators={false}>
           <Carousel.Item>
+            <div
+              className="bg-repeat"
+              style={{
+                backgroundImage:
+                  "url('../src/presentation/assets/carrusel-1.jpeg')",
+              }}
+            ></div>
+
             <img
-              className="d-block w-100"
-              src="../src/presentation/assets/imagen-bienvenida.jpg"
-              alt="First slide"
+              src="../src/presentation/assets/carrusel-1.jpeg"
+              alt="slide 1"
+              className="d-block mx-auto"
             />
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
           </Carousel.Item>
+
           <Carousel.Item>
+            <div
+              className="bg-repeat"
+              style={{
+                backgroundImage:
+                  "url('../src/presentation/assets/carrusel-2.jpeg')",
+              }}
+            ></div>
+
             <img
-              className="d-block w-100"
-              src="../src/presentation/assets/imagen-bienvenida.jpg"
-              alt="First slide"
+              src="../src/presentation/assets/carrusel-2.jpeg"
+              alt="slide 2"
+              className="d-block mx-auto"
             />
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
           </Carousel.Item>
+
           <Carousel.Item>
+            <div
+              className="bg-repeat"
+              style={{
+                backgroundImage:
+                  "url('../src/presentation/assets/carrusel-3.jpeg')",
+              }}
+            ></div>
+
             <img
-              className="d-block w-100"
-              src="../src/presentation/assets/imagen-bienvenida.jpg"
-              alt="First slide"
+              src="../src/presentation/assets/carrusel-3.jpeg"
+              alt="slide 3"
+              className="d-block mx-auto"
             />
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-              </p>
-            </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       </div>
 
       {/* Sección 4*/}
-      <Container className="p-5 text-center">
-        <h4>INFORMACIÓN DE INTERÉS</h4>
-        <div className="p-4 d-flex flex-wrap justify-content-evenly gap-4 w-100">
+      <Container
+        fluid
+        className="p-5 text-center space-section d-flex flex-column justify-content-center align-items-center"
+      >
+        <h2>
+          <strong>Preguntas frecuentes</strong>
+        </h2>
+        <Accordion defaultActiveKey="0" className="mt-4 text-start">
+          <Accordion.Item eventKey="0" className="faq-accordion">
+            <Accordion.Header>
+              <strong>¿Qué es la PDCVG-QR?</strong>
+            </Accordion.Header>
+            <Accordion.Body>
+              Es una plataforma digital diseñada para proporcionar información,
+              asistencia y herramientas de denuncia segura a las víctimas de
+              violencia de género en Quintana Roo.
+            </Accordion.Body>
+          </Accordion.Item>
 
-          <div className="circle-wrapper">
-            <Button className="btn-circle">
-            <FaSearch size={70} />
-          </Button>
-          <p className="circle-text">Instancias de la Mujer</p>
-          </div>
-          
-          <div className="circle-wrapper">
-            <Button className="btn-circle">
-            <FaSearch size={70} />
-          </Button>
-          <p className="circle-text">
-            Servicios de Prevención de la Violencia contra las Mujeres
-          </p>
-          </div>
+          <Accordion.Item eventKey="1" className="faq-accordion">
+            <Accordion.Header>
+              <strong>¿Qué servicios ofrece?</strong>
+            </Accordion.Header>
+            <Accordion.Body>
+              Ofrece asistencia mediante chatbot, acceso a directorios de apoyo,
+              seguimiento de pre-denuncias y herramientas para contactar con
+              autoridades responsables.
+            </Accordion.Body>
+          </Accordion.Item>
 
-          <div className="circle-wrapper">
-            <Button className="btn-circle">
-            <FaSearch size={70} />
-          </Button>
-          <p className="circle-text">Investigaciones de Violencia de Género</p>
-          </div>
-          
-        </div>
+          <Accordion.Item eventKey="2" className="faq-accordion">
+            <Accordion.Header>
+              <strong>¿Cómo puedo hacer una denuncia?</strong>
+            </Accordion.Header>
+            <Accordion.Body>
+              A través del formulario digital dentro de la plataforma, donde se
+              validará tu identidad de manera segura antes de enviar la
+              pre-denuncia a las autoridades correspondientes.
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
       </Container>
     </main>
   );

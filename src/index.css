@@ -207,22 +207,12 @@ button.btn-danger:hover {
 
 /* HOME */
 .home-bg {
-  background-image: url('presentation/assets/imagen-bienvenida.jpg');
+  background-image: url('presentation/assets/bg-home.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.carousel {
-  max-height: 400px;
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.carousel img {
-  object-fit: cover;
-  height: 400px;
-  width: 100%;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0,0,0,0.3);
 }
 
 .btn-circle {
@@ -273,6 +263,7 @@ button.btn-danger:hover {
 .hero-text {
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
+  color: #ffffff;
 }
 
 .btn-gob {
@@ -289,6 +280,38 @@ button.btn-danger:hover {
 .btn-gob:hover {
   background-color: #c0a56b;
 }
+
+.carousel-banner {
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-banner .bg-repeat {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat-x;
+  background-size: auto 100%; /* se ajusta verticalmente y se repite horizontalmente */
+  background-position: center;
+  opacity: 0.4; /* puedes ajustar */
+  z-index: 1;
+}
+
+.carousel-banner img {
+  height: 300px;
+  width: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.space-section {
+  min-height: 500px;
+}
+
+.faq-accordion {
+  width: 800px;         
+}
+
 
 /* FOOTER */
 .footer-custom a {
@@ -324,6 +347,20 @@ button.btn-danger:hover {
 .sidebar-item.active {
   background-color: rgba(255, 255, 255, 0.15) !important;
   font-weight: 600;
+}
+
+/* DASHBOARD DE ADMIN */
+.dashboard-container {
+  background-color: #f8f8f4;
+  min-height: 100vh;
+}
+
+.recent-table {
+  border-left: 4px solid #611232;
+}
+
+.dash-text {
+  color: #611232;
 }
 
 /*CHATBOT*/
