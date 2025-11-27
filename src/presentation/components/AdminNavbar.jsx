@@ -15,19 +15,18 @@ export default function AdminNavbar() {
             <Nav.Link as={Link} to="/admin/dashboard">
               Dashboard
             </Nav.Link>
-            <Nav.Link as={Link} to="/admin/dashboard">
+            <Nav.Link as={Link} to="/admin/casos">
               Mis casos
             </Nav.Link>
-            <Nav.Link as={Link} to="/admin/dashboard">
+            <Nav.Link as={Link} to="/admin/agenda">
               Agenda de citas
             </Nav.Link>
             <Nav.Link as={Link} to="/admin/dashboard">
               <FaBell className="me-2" />
               Notificaciones
             </Nav.Link>
-          </Nav>
-          <NavDropdown title="Perfil" id="navbarDropdown" className="ms-auto">
-            <h3 className="text-center">Nombre</h3>
+            <NavDropdown title="Perfil" id="navbarDropdown" className="mx-md-4">
+            <h5 className="text-center">Nombre</h5>
             <NavDropdown.Item as={Link} to="/admin/dashboard">
               Información de la cuenta
             </NavDropdown.Item>
@@ -38,6 +37,9 @@ export default function AdminNavbar() {
               Cerrar sesión
             </NavDropdown.Item>
           </NavDropdown>
+          </Nav>
+          
+          
         </Navbar.Collapse>
       </Container>
     </Navbar>

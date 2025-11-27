@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { BiSolidBookBookmark } from "react-icons/bi";
 import { IoWoman } from "react-icons/io5";
 import { GoLaw } from "react-icons/go";
+import { GiInjustice } from "react-icons/gi";
 
 export default function Home() {
   return (
@@ -69,12 +70,15 @@ export default function Home() {
 
           <div className="circle-wrapper">
             <Button
-              className="btn-circle"
+              className="btn-circle rotate-icon"
               as={Link}
               to="/derechos"
               active={location.pathname === "/derechos"}
             >
-              <GoLaw size={70} />
+              <div >
+                <GiInjustice size={74}/>
+              </div>
+              
             </Button>
             <p className="circle-text">Conoce tus derechos</p>
           </div>
