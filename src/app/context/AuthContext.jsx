@@ -1,122 +1,88 @@
-import axiosClient from '../../infrastructure/http/axiosClient';
+import { createContext, useContext, useState, useEffect } from 'react';
+import authService from '../../domain/services/authService';
 
-/**
- * Servicio de autenticación
- * Maneja login, registro, logout y validación de sesión
- */
-const authService = {
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Verificar si hay una sesión activa al cargar
+  useEffect(() => {
+    const initAuth = () => {
+      const currentUser = authService.getCurrentUser();
+      const token = authService.getToken();
+      
+      if (currentUser && token) {
+        setUser(currentUser);
+        setIsAuthenticated(true);
+      }
+      
+      setLoading(false);
+    };
+
+    initAuth();
+  }, []);
+
   /**
    * Iniciar sesión
-   * @param {Object} credentials - { email, password }
-   * @returns {Promise} Datos del usuario y token
    */
-  async login(credentials) {
-    const response = await axiosClient.post('/auth/login', credentials);
-    
-    // Guardar token y datos de usuario en localStorage
-    if (response.token) {
-      localStorage.setItem('token', response.token);
-    }
-    
-    if (response.user) {
-      localStorage.setItem('user', JSON.stringify(response.user));
-    }
-    
+  const login = async (credentials) => {
+    const response = await authService.login(credentials);
+    setUser(response.user);
+    setIsAuthenticated(true);
     return response;
-  },
+  };
 
   /**
-   * Registrar nuevo usuario
-   * @param {Object} userData - { nombre, email, password }
-   * @returns {Promise} Datos del usuario registrado
+   * Registrar usuario
    */
-  async register(userData) {
-    const response = await axiosClient.post('/auth/register', userData);
-    
-    // Si el registro incluye auto-login, guardar token
-    if (response.token) {
-      localStorage.setItem('token', response.token);
-      localStorage.setItem('user', JSON.stringify(response.user));
-    }
-    
+  const register = async (userData) => {
+    const response = await authService.register(userData);
+    // El backend NO hace auto-login después del registro
+    // Devolvemos success para que el componente redirija al login
     return response;
-  },
+  };
 
   /**
    * Cerrar sesión
    */
-  logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.href = '/login';
-  },
+  const logout = () => {
+    authService.logout();
+    setUser(null);
+    setIsAuthenticated(false);
+  };
 
   /**
-   * Obtener usuario actual desde localStorage
-   * @returns {Object|null} Datos del usuario o null
+   * Verificar si es administrador
    */
-  getCurrentUser() {
-    const userStr = localStorage.getItem('user');
-    if (userStr) {
-      try {
-        return JSON.parse(userStr);
-      } catch (error) {
-        console.error('Error al parsear usuario:', error);
-        return null;
-      }
-    }
-    return null;
-  },
+  const isAdmin = () => {
+    return authService.isAdmin();
+  };
 
-  /**
-   * Verificar si hay una sesión activa
-   * @returns {boolean}
-   */
-  isAuthenticated() {
-    const token = localStorage.getItem('token');
-    const user = this.getCurrentUser();
-    return !!token && !!user;
-  },
+  const value = {
+    user,
+    isAuthenticated,
+    loading,
+    login,
+    register,
+    logout,
+    isAdmin,
+  };
 
-  /**
-   * Verificar si el usuario es administrador
-   * @returns {boolean}
-   */
-  isAdmin() {
-    const user = this.getCurrentUser();
-    if (!user) return false;
-    
-    // Ajustar según cómo el backend identifica admins
-    // Opción 1: Por campo 'rol'
-    if (user.rol === 'admin' || user.rol === 'administrador') {
-      return true;
-    }
-    
-    // Opción 2: Por campo 'tipo_usuario'
-    if (user.tipo_usuario === 'admin' || user.tipo_usuario === 'encargado') {
-      return true;
-    }
-    
-    // Opción 3: Por dominio de email
-    if (user.email && user.email.includes('@admin.')) {
-      return true;
-    }
-    
-    // Opción 4: Por campo booleano 'is_admin'
-    if (user.is_admin === true) {
-      return true;
-    }
-    
-    return false;
-  },
-
-  /**
-   * Obtener token actual
-   * @returns {string|null}
-   */
-  getToken() {
-    return localStorage.getItem('token');
-  },
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export default authService;
+/**
+ * Hook para usar el contexto de autenticación
+ */
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth debe usarse dentro de un AuthProvider');
+  }
+  return context;
+};
+
+export default AuthContext;

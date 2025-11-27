@@ -7,31 +7,51 @@ import axiosClient from '../../infrastructure/http/axiosClient';
 const authService = {
   /**
    * Iniciar sesión
-   * @param {Object} credentials - { email, password }
+   * @param {Object} credentials - { correo_electronico, contrasena }
    * @returns {Promise} Datos del usuario y token
    */
   async login(credentials) {
-    const response = await axiosClient.post('/auth/login', credentials);
+    const response = await axiosClient.post('/auth/login', {
+      correo_electronico: credentials.email,
+      contrasena: credentials.password,
+    });
     
-    // Guardar token y datos de usuario en localStorage
-    if (response.token) {
-      localStorage.setItem('token', response.token);
+    // El backend devuelve: access_token, token_type, expires_in, refresh_token
+    if (response.access_token) {
+      localStorage.setItem('token', response.access_token);
+      localStorage.setItem('refresh_token', response.refresh_token);
+      localStorage.setItem('token_expires_in', response.expires_in);
     }
     
-    if (response.user) {
-      localStorage.setItem('user', JSON.stringify(response.user));
+    // Guardar el email del usuario desde el token (por ahora)
+    // TODO: Hacer petición adicional para obtener datos completos del usuario
+    if (credentials.email) {
+      const userData = {
+        email: credentials.email,
+        // El backend no devuelve info completa del usuario en login
+        // Necesitarás un endpoint como /auth/me para obtener datos completos
+      };
+      localStorage.setItem('user', JSON.stringify(userData));
     }
     
-    return response;
+    return {
+      token: response.access_token,
+      user: { email: credentials.email },
+    };
   },
 
   /**
-   * Registrar nuevo usuario
-   * @param {Object} userData - { nombre, email, password }
+   * Registrar nuevo usuario (denunciante)
+   * @param {Object} userData - { nombre, email, password, confirmPassword }
    * @returns {Promise} Datos del usuario registrado
    */
   async register(userData) {
-    const response = await axiosClient.post('/auth/register', userData);
+    const response = await axiosClient.post('/auth/register/denunciante', {
+      nombre: userData.nombre,
+      correo_electronico: userData.email,
+      contrasena: userData.password,
+      confirmar_contrasena: userData.confirmPassword,
+    });
     
     // Si el registro incluye auto-login, guardar token
     if (response.token) {

@@ -90,17 +90,18 @@ export default function Register() {
 
     try {
       // Llamar al registro desde el contexto
-      await register({
+      const response = await register({
         nombre: formData.nombre,
         email: formData.email,
         password: formData.password,
+        confirmPassword: formData.confirmPassword,
       });
 
-      // Redirigir según el rol (si el backend hace auto-login)
-      if (isAdmin()) {
-        navigate("/admin/dashboard");
-      } else {
-        navigate("/");
+      // Si el registro fue exitoso, redirigir al login
+      if (response.success) {
+        // Opcional: Mostrar mensaje de éxito antes de redirigir
+        alert('¡Registro exitoso! Por favor inicia sesión.');
+        navigate("/login");
       }
     } catch (err) {
       console.error("Error en registro:", err);
