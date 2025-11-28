@@ -1,5 +1,36 @@
 import axiosClient from '../../infrastructure/http/axiosClient';
 
+// Modo de desarrollo: usar autenticación mock
+const USE_MOCK_AUTH = true;
+
+// Usuarios de prueba
+const MOCK_USERS = {
+  admin: {
+    email: 'admin@test.com',
+    password: 'admin123',
+    userData: {
+      id: 1,
+      nombre: 'Administrador',
+      email: 'admin@test.com',
+      rol: 'admin',
+      tipo_usuario: 'administrador',
+      is_admin: true,
+    },
+  },
+  user: {
+    email: 'usuario@test.com',
+    password: 'user123',
+    userData: {
+      id: 2,
+      nombre: 'Usuario Normal',
+      email: 'usuario@test.com',
+      rol: 'denunciante',
+      tipo_usuario: 'denunciante',
+      is_admin: false,
+    },
+  },
+};
+
 /**
  * Servicio de autenticación
  * Maneja login, registro, logout y validación de sesión
@@ -7,29 +38,59 @@ import axiosClient from '../../infrastructure/http/axiosClient';
 const authService = {
   /**
    * Iniciar sesión
-   * @param {Object} credentials - { correo_electronico, contrasena }
+   * @param {Object} credentials - { email, password }
    * @returns {Promise} Datos del usuario y token
    */
   async login(credentials) {
+    // MODO MOCK: Autenticación local sin backend
+    if (USE_MOCK_AUTH) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // Verificar credenciales contra usuarios mock
+          const mockUser = Object.values(MOCK_USERS).find(
+            (u) => u.email === credentials.email && u.password === credentials.password
+          );
+
+          if (mockUser) {
+            // Generar token mock
+            const mockToken = `mock_token_${Date.now()}`;
+            const mockRefreshToken = `mock_refresh_${Date.now()}`;
+
+            // Guardar en localStorage
+            localStorage.setItem('token', mockToken);
+            localStorage.setItem('refresh_token', mockRefreshToken);
+            localStorage.setItem('token_expires_in', '3600');
+            localStorage.setItem('user', JSON.stringify(mockUser.userData));
+
+            resolve({
+              token: mockToken,
+              user: mockUser.userData,
+            });
+          } else {
+            reject({
+              message: 'Credenciales inválidas',
+              detail: 'El correo o la contraseña son incorrectos',
+            });
+          }
+        }, 500); // Simular latencia de red
+      });
+    }
+
+    // MODO REAL: Conectar con backend
     const response = await axiosClient.post('/auth/login', {
       correo_electronico: credentials.email,
       contrasena: credentials.password,
     });
     
-    // El backend devuelve: access_token, token_type, expires_in, refresh_token
     if (response.access_token) {
       localStorage.setItem('token', response.access_token);
       localStorage.setItem('refresh_token', response.refresh_token);
       localStorage.setItem('token_expires_in', response.expires_in);
     }
     
-    // Guardar el email del usuario desde el token (por ahora)
-    // TODO: Hacer petición adicional para obtener datos completos del usuario
     if (credentials.email) {
       const userData = {
         email: credentials.email,
-        // El backend no devuelve info completa del usuario en login
-        // Necesitarás un endpoint como /auth/me para obtener datos completos
       };
       localStorage.setItem('user', JSON.stringify(userData));
     }
@@ -46,6 +107,31 @@ const authService = {
    * @returns {Promise} Datos del usuario registrado
    */
   async register(userData) {
+    // MODO MOCK: Registro simulado
+    if (USE_MOCK_AUTH) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // Validar que las contraseñas coincidan
+          if (userData.password !== userData.confirmPassword) {
+            reject({
+              message: 'Las contraseñas no coinciden',
+            });
+            return;
+          }
+
+          // Simular registro exitoso
+          resolve({
+            message: 'Usuario registrado exitosamente',
+            user: {
+              nombre: userData.nombre,
+              email: userData.email,
+            },
+          });
+        }, 500);
+      });
+    }
+
+    // MODO REAL: Conectar con backend
     const response = await axiosClient.post('/auth/register/denunciante', {
       nombre: userData.nombre,
       correo_electronico: userData.email,
@@ -53,7 +139,6 @@ const authService = {
       confirmar_contrasena: userData.confirmPassword,
     });
     
-    // Si el registro incluye auto-login, guardar token
     if (response.token) {
       localStorage.setItem('token', response.token);
       localStorage.setItem('user', JSON.stringify(response.user));
@@ -67,6 +152,8 @@ const authService = {
    */
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('token_expires_in');
     localStorage.removeItem('user');
     window.location.href = '/login';
   },
@@ -106,28 +193,16 @@ const authService = {
     const user = this.getCurrentUser();
     if (!user) return false;
     
-    // Ajustar según cómo el backend identifica admins
-    // Opción 1: Por campo 'rol'
-    if (user.rol === 'admin' || user.rol === 'administrador') {
-      return true;
-    }
-    
-    // Opción 2: Por campo 'tipo_usuario'
-    if (user.tipo_usuario === 'admin' || user.tipo_usuario === 'encargado') {
-      return true;
-    }
-    
-    // Opción 3: Por dominio de email
-    if (user.email && user.email.includes('@admin.')) {
-      return true;
-    }
-    
-    // Opción 4: Por campo booleano 'is_admin'
-    if (user.is_admin === true) {
-      return true;
-    }
-    
-    return false;
+    // Verificar múltiples campos para identificar admin
+    return (
+      user.rol === 'admin' ||
+      user.rol === 'administrador' ||
+      user.tipo_usuario === 'admin' ||
+      user.tipo_usuario === 'administrador' ||
+      user.tipo_usuario === 'encargado' ||
+      user.is_admin === true ||
+      (user.email && user.email.includes('@admin.'))
+    );
   },
 
   /**
@@ -136,6 +211,26 @@ const authService = {
    */
   getToken() {
     return localStorage.getItem('token');
+  },
+
+  /**
+   * Obtener usuarios mock para desarrollo
+   * @returns {Object} Usuarios de prueba
+   */
+  getMockUsers() {
+    if (USE_MOCK_AUTH) {
+      return {
+        admin: {
+          email: MOCK_USERS.admin.email,
+          password: MOCK_USERS.admin.password,
+        },
+        user: {
+          email: MOCK_USERS.user.email,
+          password: MOCK_USERS.user.password,
+        },
+      };
+    }
+    return null;
   },
 };
 

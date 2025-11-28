@@ -3,7 +3,7 @@ import authService from '../../domain/services/authService';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -72,17 +72,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-};
+}
 
-/**
- * Hook para usar el contexto de autenticación
- */
-export const useAuth = () => {
+// eslint-disable-next-line react-refresh/only-export-components
+export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error('useAuth debe usarse dentro de un AuthProvider');
   }
   return context;
-};
-
-export default AuthContext;
+}
