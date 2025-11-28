@@ -81,9 +81,9 @@ export default function Login() {
             md={6}
             className="bg-register text-light p-5 d-flex flex-column justify-content-center position-relative"
           >
-            <Button className="btn-back" onClick={() => window.history.back()}>
+            {/*Button className="btn-back" onClick={() => window.history.back()}>
               <IoMdArrowRoundBack color="#ffff" size={30} />
-            </Button>
+            </Button>*/}
             <h1 className="fw-bold mb-4 fs-1">¡Bienvenida!</h1>
             <p className="lead mb-4 fs-5">
               Esta plataforma digital busca apoyar y orientar a mujeres en
@@ -102,7 +102,7 @@ export default function Login() {
               className="form-gob form-scroll flex-grow-1"
               onSubmit={handleSubmit}
             >
-              <h2 className="text-register mb-3">Bienvenida a PDCVG-QR</h2>
+              <h2 className="text-register mb-3">Bienvenida a Segura</h2>
               <p className="mb-4 fs-4">Inicio de Sesión</p>
 
               {/* Mostrar errores */}
