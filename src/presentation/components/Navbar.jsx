@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import { useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
+import { IoMdHome } from "react-icons/io";
+import { GoLaw } from "react-icons/go";
+import { FaLocationDot } from "react-icons/fa6";
 
 export default function CustomNavbar() {
 
@@ -11,72 +14,94 @@ export default function CustomNavbar() {
     <Navbar
       expand="md"
       variant="dark"
-      className="navbar-custom"
+      className="navbar-custom py-2"
       expanded={expanded}
-      onToggle={() => setExpanded(!expanded)}
+      onToggle={setExpanded}
     >
-      <Container>
-        <Navbar.Brand className="fw-bold text-white navbar-brand">
-          GITASVG-QR
+      <Container fluid>
+
+        {/* LOGO */}
+        <Navbar.Brand className="fw-bold text-white fs-3">
+          Segura
         </Navbar.Brand>
 
-        <Navbar.Toggle
-          aria-controls="subNavBarDropdown"
-          className="border-0 text-white"
-        />
+        {/* TOGGLE */}
+        <Navbar.Toggle aria-controls="mainNavbar" className="border-0 text-white" />
 
-        <Navbar.Collapse id="subNavBarDropdown" className="justify-content-between">
-          <Nav className="mx-auto text-center">
+        {/* COLLAPSE */}
+        <Navbar.Collapse id="mainNavbar" className="w-100">
 
+          {/** 🔹 BLOQUE MENÚ PRINCIPAL — CENTRADO */}
+          <Nav
+            className="
+              flex-column flex-md-row 
+              justify-content-md-center 
+              align-items-md-center 
+              mx-auto 
+              gap-md-5 
+              mt-3 mt-md-0
+            "
+            style={{ flexGrow: 1 }}
+          >
             <Nav.Link
               as={Link}
               to="/"
-              className="mx-md-4"
+              className="nav-item-custom"
               onClick={() => setExpanded(false)}
             >
+              <IoMdHome className="me-1" />
               Inicio
             </Nav.Link>
 
             <NavDropdown
-              title="Denuncia"
+              title={
+                <span className="nav-item-custom">
+                  <GoLaw className="me-1" />
+                  Denuncia
+                </span>
+              }
               id="navbarDropdown1"
-              className="mx-md-4"
+              className="nav-item-dropdown"
             >
-              <NavDropdown.Item as={Link} to="/predenuncia" onClick={() => setExpanded(false)}>
-                Predenuncia
+              <NavDropdown.Item className="nav-item-dropdown-item" as={Link} to="/predenuncia" onClick={() => setExpanded(false)}>
+                Pre-denuncia
               </NavDropdown.Item>
-
-              <NavDropdown.Item as={Link} to="/seguimiento" onClick={() => setExpanded(false)}>
+              <NavDropdown.Item className="nav-item-dropdown-item" as={Link} to="/seguimiento" onClick={() => setExpanded(false)}>
                 Seguimiento
               </NavDropdown.Item>
             </NavDropdown>
 
-            <Nav.Link as={Link} to="/directorio" className="mx-md-4" onClick={() => setExpanded(false)}>
+            <Nav.Link
+              as={Link}
+              to="/directorio"
+              className="nav-item-custom"
+              onClick={() => setExpanded(false)}
+            >
+              <FaLocationDot size={20} className="me-1" />
               Directorio
             </Nav.Link>
+          </Nav>
 
-            {/*<Nav.Link as={Link} to="/ayuda" className="mx-md-2" onClick={() => setExpanded(false)}>
-              Ayuda
-            </Nav.Link>*/}
-
-            <NavDropdown title="Perfil" id="navbarDropdown2" className="mx-md-4">
-              <h5 className="text-center">Usuario</h5>
-              <NavDropdown.Item as={Link} to="/user-info" onClick={() => setExpanded(false)}>
+          {/** 🔹 PERFIL — SIEMPRE A LA DERECHA */}
+          <Nav className="ms-md-auto mt-3 mt-md-0">
+            <NavDropdown
+              title={
+                <span className="nav-item-profile text-white">
+                  <FaRegUserCircle size={28} className="me-1" />  </span>
+              }
+              id="navbarDropdown2"
+              align="end" 
+            >
+              <NavDropdown.Item className="nav-item-dropdown-item" as={Link} to="/user-info" onClick={() => setExpanded(false)}>
                 Información de la cuenta
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/security" onClick={() => setExpanded(false)}>
+              <NavDropdown.Item className="nav-item-dropdown-item" as={Link} to="/security" onClick={() => setExpanded(false)}>
                 Sesión y seguridad
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/logout" onClick={() => setExpanded(false)}>
+              <NavDropdown.Item className="nav-item-dropdown-item" as={Link} to="/logout" onClick={() => setExpanded(false)}>
                 Cerrar sesión
               </NavDropdown.Item>
             </NavDropdown>
-          </Nav>
-
-          <Nav className="ms-md-auto text-center mt-2 mt-md-0">
-            <Nav.Link as={Link} to="/login" className="text-white" onClick={() => setExpanded(false)}>
-              <FaRegUserCircle size={24} />
-            </Nav.Link>
           </Nav>
 
         </Navbar.Collapse>
@@ -84,3 +109,7 @@ export default function CustomNavbar() {
     </Navbar>
   );
 }
+
+
+
+

@@ -1,24 +1,73 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import { BsRobot } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
 import { chatService } from "../../domain/services/chatService";
 import { formatMarkdown } from "../utils/formatMarkdown";
+import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
+
 
 export default function Chatbot() {
 
     const [messages, setMessages] = useState([
-        { sender: "bot", text: "¡Hola! 👋 ¿En qué puedo ayudarte hoy?" },
+        { sender: "bot", text: "¡Hola! soy tu asistente virtual 👋. Estoy aquí para orientarte y ayudarte a realizar una predenuncia de manera segura y sencilla." },
     ]);
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);
     const userId = "user_123";
+    const [sessionId, setSessionId] = useState("");
 
+    //crea y almacena el sessionId
+    useEffect(() => {
+        let saved = localStorage.getItem("session_id");
+        if (!saved) {
+            saved = uuidv4();
+            localStorage.setItem("session_id", saved);
+        }
+        setSessionId(saved);
+    }, []);
+
+    // carga historial
+    useEffect(() => {
+        const loadHistory = async () => {
+            try {
+                const historyData = await chatService.getHistory(sessionId);
+
+                const historyMessages = historyData.history.map(raw => {
+
+                    // Detectar si empieza con user: o assistant:
+                    const isUser = raw.toLowerCase().startsWith("user:");
+
+                    // Quitar prefijos indeseados
+                    const cleanText = raw
+                        .replace(/^user:\s*/i, "")
+                        .replace(/^assistant:\s*/i, "")
+                        .trim();
+
+                    return {
+                        sender: isUser ? "user" : "bot",
+                        text: cleanText
+                    };
+                });
+
+                setMessages((prev) => [...prev, ...historyMessages]);
+
+            } catch (error) {
+                console.log("Sin historial o error:", error);
+            }
+        };
+
+        if (sessionId) loadHistory();
+    }, [sessionId]);
+
+
+    // envio del mensaje
     const handleSend = async (e) => {
         e.preventDefault();
         if (!input.trim()) return;
+        if (!sessionId) return;
 
-        // Agregar mensaje del usuario
         setMessages(prev => [...prev, { text: input, sender: 'user' }]);
 
         const currentInput = input;
@@ -26,28 +75,46 @@ export default function Chatbot() {
         setLoading(true);
 
         try {
-            // Llamada a la API
-            const response = await chatService.sendMessage(userId, currentInput);
+            const response = await chatService.sendMessage(
+                userId,
+                currentInput,
+                sessionId
+            );
 
-            // Formatear Markdown usando tu función
             const formattedText = formatMarkdown(response.response);
 
-            // Agregar respuesta del bot formateada
-            setMessages(prev => [...prev, {
-                text: formattedText,
-                sender: 'bot'
-            }]);
+            setMessages(prev => [
+                ...prev,
+                { text: formattedText, sender: 'bot' }
+            ]);
 
         } catch (error) {
-            setMessages(prev => [...prev, {
-                text: 'Error al procesar mensaje',
-                sender: 'bot',
-                error: true
-            }]);
+            setMessages(prev => [
+                ...prev,
+                { text: 'Error al procesar mensaje', sender: 'bot', error: true }
+            ]);
         } finally {
             setLoading(false);
         }
     };
+
+    // generar caso
+    useEffect(() => {
+        const loadCaseData = async () => {
+            try {
+                const data = await chatService.getCase(userId);
+
+                // Guardar en localStorage para el formulario
+                localStorage.setItem("predenuncia_data", JSON.stringify(data));
+
+            } catch (error) {
+                console.log("Error cargando caso:", error);
+            }
+        };
+
+       loadCaseData();
+    }, []);
+
 
     return (
         <Container fluid className="d-flex flex-column" style={{ height: "100%", width: "100%" }}>
@@ -69,7 +136,7 @@ export default function Chatbot() {
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                marginRight: "10px",
+                                marginRight: "15px",
                             }}
                         >
                             <BsRobot size={24} color="#000000ff" />
@@ -77,7 +144,7 @@ export default function Chatbot() {
 
                         <div>
                             <h5 className="mb-0 fw-bold">GITASVG-QR Bot</h5>
-                            <small className="text-light" style={{ fontSize: '12px' }}>
+                            <small className="text-light" style={{ fontSize: '14px' }}>
                                 <span
                                     style={{
                                         height: "10px",
@@ -92,6 +159,9 @@ export default function Chatbot() {
                             </small>
                         </div>
                     </div>
+                    <Button as={Link} to="/predenuncia" active={location.pathname === "/predenuncia"} className="btn-predenuncia align-items-start me-5">
+                        Iniciar pre-denuncia
+                    </Button>
                 </Col>
             </Row>
 
@@ -100,7 +170,6 @@ export default function Chatbot() {
                 <Col xs={12}>
                     <Card className="shadow-lg">
                         <Card.Body className="d-flex flex-column" style={{ height: "88vh" }}>
-                            
                             {/* Mensajes */}
                             <div className="flex-grow-1 overflow-auto mb-3">
                                 {messages.map((msg, i) => (
@@ -109,7 +178,7 @@ export default function Chatbot() {
                                         className={`d-flex mb-3 ${msg.sender === "user"
                                             ? "justify-content-end"
                                             : "justify-content-start"
-                                        }`}
+                                            }`}
                                     >
 
                                         {/* BOT */}
@@ -157,7 +226,7 @@ export default function Chatbot() {
                                     onClick={handleSend}
                                     disabled={loading}
                                 >
-                                    {loading ?  "..." : <IoSend size={20} />}
+                                    {loading ? "..." : <IoSend size={22} />}
                                 </Button>
                             </div>
 

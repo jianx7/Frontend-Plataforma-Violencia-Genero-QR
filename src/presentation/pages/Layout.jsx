@@ -9,7 +9,7 @@ export default function Layout() {
     <>
       <Navbar />
       <Outlet />
-      <Chat />
+      {/*<Chat />*/}
       <Footer />
     </>)
 }

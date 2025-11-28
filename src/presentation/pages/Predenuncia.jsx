@@ -1,10 +1,16 @@
 import { Form, Button, Row, Col, Modal } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { chatService } from "../../domain/services/chatService";
 
 export default function Predenuncia() {
     const [modal, setModal] = useState(false)
+    {/*const [curp, setCurp] = useState("");
+    const[correo, setCorreo]=useState("marian@gmail.com");
+    const [nombre, setNombre] = useState("");
+    const [apellido, setApellido] = useState("");
+    const [descripcion, setDescripcion] = useState("");*/}
+    
     const [municipio, setMunicipio] = useState("");
-
     const municipios = [
         "Benito Juárez",
         "Cozumel",
@@ -27,17 +33,46 @@ export default function Predenuncia() {
         "Patrimonial",
         "Económica",
         "Sexual",
-        "Familiar",
-        "Laboral y docente",
-        "Institucional",
+        "Laboral y Docente",
         "Digital",
     ];
 
 
-    const [curp, setCurp] = useState("");
+    // === ESTADO UNIFICADO DEL FORM ===
+    const [formData, setFormData] = useState({
+        correo_electronico: "",
+        nombre: "",
+        apellido_paterno: "",
+        apellido_materno: "",
+        curp: "",
+        fecha_nacimiento: "",
+        municipio: "",
+        fecha_hechos: "",
+        tipo_violencia: "",
+        descripcion_hechos: ""
+    });
+
+    useEffect(() => {
+        const saved = localStorage.getItem("predenuncia_data");
+        if (saved) {
+            setFormData(prev => ({
+                ...prev,
+                ...JSON.parse(saved)
+            }));
+        }
+    }, []);
 
     const handleChange = (e) => {
-        // Convierte a mayúsculas y limita a 18 caracteres
+        const { name, value } = e.target;
+
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const curpChange = (e) => {
+        // Convierte a mayúsculas y limita a 18 caracteres la curp
         const value = e.target.value.toUpperCase().slice(0, 18);
         setCurp(value);
     };
@@ -50,7 +85,7 @@ export default function Predenuncia() {
     return (
         <Row className="justify-content-center mx-4">
             <h2 className="fw-bold my-4">Predenuncia</h2>
-            <p className=" mx-5">La función principal de este apartado es conocer las predenuncias  que se presenten, por hechos que pudieran ser constitutivos de los delitos de su competencia de conformidad con el Código Penal y la Ley de Acceso de las Mujeres a una Vida Libre de Violencia, así como canalizar a las victimas con un orientador para el proceso de denuncia. </p>
+            <p className=" mx-5">La función principal de este apartado es conocer las predenuncias  que se presenten, por hechos que pudieran ser constitutivos de los delitos de su competencia de conformidad con el Código Penal y la Ley de Acceso de las Mujeres a una Vida Libre de Violencia, así como canalizar a las víctimas con un orientador para el proceso de denuncia. </p>
 
             <Col
                 md={8}
@@ -65,6 +100,8 @@ export default function Predenuncia() {
                             placeholder="Correo electrónico"
                             size="lg"
                             required
+                            value={formData.correo_electronico || ""}
+                            onChange={handleChange}
                         />
                     </Form.Group>
 
@@ -75,6 +112,8 @@ export default function Predenuncia() {
                             placeholder="Nombre"
                             size="lg"
                             required
+                            value={formData.nombre || ""}
+                            onChange={handleChange}
                         />
                     </Form.Group>
 
@@ -85,6 +124,8 @@ export default function Predenuncia() {
                             placeholder="Apellido paterno"
                             size="lg"
                             required
+                            value={formData.apellido_paterno || ""}
+                            onChange={handleChange}
                         />
                     </Form.Group>
 
@@ -95,6 +136,8 @@ export default function Predenuncia() {
                             placeholder="Apellido materno"
                             size="lg"
                             required
+                            value={formData.apellido_materno || ""}
+                            onChange={handleChange}
                         />
                     </Form.Group>
 
@@ -102,8 +145,8 @@ export default function Predenuncia() {
                         <Form.Label className="fs-5 text">CURP: *</Form.Label>
                         <Form.Control
                             type="text"
-                            value={curp}
-                            onChange={handleChange}
+                            value={formData.curp || ""}
+                            onChange={curpChange}
                             placeholder="CURP"
                             maxLength={18}
                             style={{ textTransform: "uppercase" }}
@@ -115,22 +158,25 @@ export default function Predenuncia() {
                     </Form.Group>
 
                     <Form.Group className="mb-4" controlId="edad-04">
-                        <Form.Label className="fs-5 text">Edad (años): *</Form.Label>
+                        <Form.Label className="fs-5 text">Fecha de nacimiento: *</Form.Label>
                         <Form.Control
-                            type="number"
-                            placeholder="Edad"
+                            type="date"
+                            placeholder="Fecha"
                             size="lg"
-                            min="0"
                             required
+                            value={formData.fecha_nacimiento || ""}
+                            onChange={handleChange}
                         />
                     </Form.Group>
 
                     <Form.Group className="mb-4" controlId="municipio-05">
                         <Form.Label className="fs-5 text">Municipio: *</Form.Label>
                         <Form.Select
-                            value={municipio}
+                            //value={municipio}
                             size="lg"
-                            onChange={(e) => setMunicipio(e.target.value)}
+                            //onChange={(e) => setMunicipio(e.target.value)}
+                            value={formData.municipio || ""}
+                            onChange={handleChange}
 
                         >
                             <option value="">Selecciona un municipio</option>
@@ -151,20 +197,24 @@ export default function Predenuncia() {
                             placeholder="Fecha"
                             size="lg"
                             required
+                            value={formData.fecha_hechos || ""}
+                            onChange={handleChange}
                         />
 
                     </Form.Group><Form.Group className="mb-4" controlId="tipo-05">
                         <Form.Label className="fs-5 text">Tipo de violencia: *</Form.Label>
                         <Form.Select
-                            value={tipoViolencia}
+                            //value={tipoViolencia}
                             size="lg"
-                            onChange={(e) => setTipoViolencia(e.target.value)}
+                            //onChange={(e) => setTipoViolencia(e.target.value)}
+                            value={formData.tipo_violencia || ""}
+                            onChange={handleChange}
 
                         >
                             <option value="">Selecciona el tipo de violencia</option>
-                            {tiposViolencia.map((m) => (
-                                <option key={m} value={m}>
-                                    {m}
+                            {tiposViolencia.map((t) => (
+                                <option key={t} value={t}>
+                                    {t}
                                 </option>
                             ))}
                         </Form.Select>
@@ -172,9 +222,14 @@ export default function Predenuncia() {
                         {tipoViolencia && <p className="mt-2">Seleccionado: {tipoViolencia}</p>}
                     </Form.Group>
 
+
                     <Form.Group className="mb-3" controlId="textarea-06">
                         <Form.Label className="fs-5 text">Descripción de los hechos: *</Form.Label>
-                        <Form.Control as="textarea" rows={3} placeholder="Redacta la descripción..." size="lg" required />
+                        <Form.Control
+                            as="textarea" rows={4} placeholder="Redacta la descripción..." size="lg" required
+                            value={formData.descripcion_hechos || ""}
+                            onChange={handleChange}
+                        />
                     </Form.Group>
 
                     <div className="d-flex justify-content-center">
@@ -191,7 +246,7 @@ export default function Predenuncia() {
                     </Modal.Header>
 
                     <Modal.Body>
-                        <p><strong>Folio de seguimiento: </strong>12344</p>
+                        <p><strong>Folio de seguimiento: </strong>A123</p>
                         <p>Recuerda guardar tu folio para realizar la consulta del seguimiento de tu predenuncia.</p>
                     </Modal.Body>
 

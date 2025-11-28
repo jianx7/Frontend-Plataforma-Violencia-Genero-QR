@@ -10,31 +10,41 @@ import { Link } from "react-router-dom";
 import { BiSolidBookBookmark } from "react-icons/bi";
 import { IoWoman } from "react-icons/io5";
 import { GoLaw } from "react-icons/go";
+import Chat from "../components/Chat";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+const [showChat, setShowChat] = useState(false);
+
+  const openChat = () => setShowChat(true);
+  const closeChat = () => setShowChat(false);
 
   return (
     <main>
-      {/* Sección 1 */}
       <Container fluid className="py-5 home-container home-bg">
         <Row className="justify-content-md-center">
           <Col md={6} className="text-md-start w-100">
             <h1 className="hero-title text-light">Bienvenida</h1>
             <p className="hero-text">
               No estás sola. <br />
-              Te ayudamos a realizar tu pre-denuncia y recibir apoyo de forma
-              segura.
+              Te ayudamos a realizar tu pre-denuncia y recibir apoyo de forma segura.
             </p>
-            
-            <Link to={"/chatbot"}>
-              <Button className="btn-gob px-4 py-2">
-                Iniciar chat de orientación
-              </Button>
-            </Link>
 
+            {/* Este botón abre el mismo Offcanvas que el botón flotante */}
+            <Button onClick={openChat} className="btn-gob px-4 py-2">
+              Iniciar orientación
+            </Button>
           </Col>
         </Row>
       </Container>
+
+      {/* Chat global */}
+      <Chat
+                show={showChat}
+                onOpen={() => setShowChat(true)}
+                onClose={() => setShowChat(false)}
+            />
+      
 
       {/* Sección 2*/}
       <Container className="p-5 text-center space-section d-flex flex-column justify-content-center align-items-center">
@@ -54,7 +64,7 @@ export default function Home() {
             >
               <BiSolidBookBookmark size={68} />
             </Button>
-            <p className="circle-text">Directorios de ayuda</p>
+            <p className="circle-text fs-5">Directorios de ayuda</p>
           </div>
 
           <div className="circle-wrapper">
@@ -66,7 +76,7 @@ export default function Home() {
             >
               <IoWoman size={70} />
             </Button>
-            <p className="circle-text">Instancias de la mujer</p>
+            <p className="circle-text fs-5">Instancias de la mujer</p>
           </div>
 
           <div className="circle-wrapper">
@@ -78,7 +88,7 @@ export default function Home() {
             >
               <GoLaw size={70} />
             </Button>
-            <p className="circle-text">Conoce tus derechos</p>
+            <p className="circle-text fs-5">Conoce tus derechos</p>
           </div>
         </div>
       </Container>

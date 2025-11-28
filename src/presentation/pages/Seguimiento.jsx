@@ -72,7 +72,7 @@ export default function Seguimiento() {
           </Button>
         </Col>
 
-        <Col xs={12} className="my-2">        
+        <Col xs={12} className="my-3">        
         {/* Mostrar error */}
           {error && <p className="text-danger mt-3">{error}</p>}
 
@@ -81,10 +81,11 @@ export default function Seguimiento() {
             <Card className="mt-3">
               <Card.Body>
                 <h5 className="mb-3">Información de la denuncia</h5>
-                <p><strong>Nombre del orientador:</strong> Lic. Fulanito{resultado.nombre}</p>
+                <p><strong>Nombre del orientador:</strong> Lic. Gabriela Pérez Torres{resultado.nombre}</p>
                 <p><strong>Fecha:</strong> 18/11/2025{resultado.fecha}</p>
-                <p><strong>Estado:</strong> Proceso {resultado.estado}</p>
-                <p><strong>Descripción:</strong> En proceso de denuncia{resultado.descripcion}</p>
+                <p><strong>Estado:</strong> Enviada {resultado.estado}</p>
+                <p><strong>Correo de contacto:</strong> contacto@semujeres.qroo.gob.mx,</p>
+                <p><strong>Descripción:</strong> En proceso de atención y denuncia{resultado.descripcion}</p>
               </Card.Body>
             </Card>
           )}

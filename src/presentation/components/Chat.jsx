@@ -1,47 +1,46 @@
-import { useState } from "react";
+// Chat.jsx
 import { Button, Offcanvas, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Chatbot from "../pages/Chatbot";
-import { RiRobot3Line } from "react-icons/ri";
+import { BsRobot } from "react-icons/bs";
 
-export default function HomePanel() {
-    const [show, setShow] = useState();
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    
-
+export default function Chat({ show, onOpen, onClose }) {
     return (
         <>
             {/* Botón flotante */}
-            {!show && (
-                <OverlayTrigger
-                    placement="left"
-                    container={document.body}
-                    overlay={<Tooltip
-                        id="tooltip-chat"
-                        style={{ fontSize: "16px" }}
-
-                    >¿Tienes dudas?
-                    </Tooltip>
-                    }
-                >
-                    <Button
-                        onClick={handleShow}
+            {!show && ( <Button
+                        onClick={onOpen}
                         className="btn-flotante rounded-circle shadow"
                     >
-                        <RiRobot3Line size={40} color="black" /> {/* Icono*/}
+                        <BsRobot size={40} color="black" />
                     </Button>
-                </OverlayTrigger>
+                
             )}
-
+                {/*<OverlayTrigger
+                    placement="left"
+                    //container={document.body}
+                    trigger={["hover", "focus"]}
+                    overlay={
+                        <Tooltip id="tooltip-chat" style={{ fontSize: "20px" }}>
+                            Inicia un chat de orientación
+                        </Tooltip>
+                    }
+                ></OverlayTrigger>*/}
+                   
 
             {/* Panel lateral*/}
-            <Offcanvas show={show} onHide={handleClose} placement="end" backdrop="false" className="custom" >
+            <Offcanvas
+                show={show}
+                onHide={onClose}
+                placement="end"
+                backdrop="false"
+                className="custom"
+            >
                 <Offcanvas.Body className="p-0">
                     <Chatbot />
-                    {/* Botón de cerrar flotante */}
+
+                    {/* Botón cerrar */}
                     <Button
-                        onClick={handleClose}
+                        onClick={onClose}
                         className="position-absolute top-0 end-0 m-2 border-0"
                         style={{
                             background: "transparent",
@@ -57,4 +56,5 @@ export default function HomePanel() {
         </>
     );
 }
+
 
