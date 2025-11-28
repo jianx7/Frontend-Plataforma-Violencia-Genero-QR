@@ -12,6 +12,7 @@ import { IoWoman } from "react-icons/io5";
 import { GoLaw } from "react-icons/go";
 import Chat from "../components/Chat";
 import { useState, useEffect } from "react";
+import { GiInjustice } from "react-icons/gi";
 
 export default function Home() {
 const [showChat, setShowChat] = useState(false);
@@ -81,12 +82,15 @@ const [showChat, setShowChat] = useState(false);
 
           <div className="circle-wrapper">
             <Button
-              className="btn-circle"
+              className="btn-circle rotate-icon"
               as={Link}
               to="/derechos"
               active={location.pathname === "/derechos"}
             >
-              <GoLaw size={70} />
+              <div >
+                <GiInjustice size={74}/>
+              </div>
+              
             </Button>
             <p className="circle-text fs-5">Conoce tus derechos</p>
           </div>

@@ -392,7 +392,6 @@ button.btn-danger:hover {
 /* SIDEBAR */
 .bg-gob-dark {
   background-color: #611232 !important;
-  /* Azul institucional */
 }
 
 .sidebar {
@@ -422,6 +421,13 @@ button.btn-danger:hover {
 .dash-text {
   color: #611232;
 }
+
+.card-header {
+  background-color: #DDC9A3; 
+  font-weight: bold;
+  padding: 15px;
+}
+
 
 /*CHATBOT*/
 .send {
@@ -465,16 +471,47 @@ button.btn-danger:hover {
 
 /*chat*/
 .bg-chat {
-  background-color: #ddc9a3;
+  background-color: #DDC9A3;
 }
 
-.btn-form {
-  background-color: #c0a56b;
-  border: none;
-  font-weight: bold;
-  padding: 0.8rem 2rem;
-  border-radius: 4px;
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-day {
+  height: 60px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fdfdfd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  font-size: 1.1rem;
-  transition: background-color 0.3s ease;
+}
+
+.calendar-day:hover {
+  background: #eef3f7;
+}
+
+.calendar-day.has-cita {
+  font-weight: bold;
+  color: #13322b;
+  border-color: #9b1d50;
+}
+
+.calendar-day .dot {
+  width: 6px;
+  height: 6px;
+  background: #9b1d50;
+  border-radius: 50%;
+  margin-top: 4px;
+}
+
+
+.rotate-icon div{
+  transition: transform 0.3s ease-in-out;
+  transform: rotate(180deg);
 }
