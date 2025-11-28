@@ -18,7 +18,7 @@ export default function InstitucionCard({ institucion }) {
       <p><strong>Teléfono:</strong> {institucion.telefono}</p>
       <p><strong>Correo:</strong> {institucion.correo}</p>
 
-      <button className="btn btn-primary mt-2" onClick={handleVerMapa}>
+      <button className="btn btn-gob mt-2" onClick={handleVerMapa}>
         Ver mapa
       </button>
     </div>

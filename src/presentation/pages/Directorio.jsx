@@ -23,7 +23,7 @@ export default function Directorio() {
   }
 
   return (
-    <Container className="p-5">
+    <Container className="p-5 faq-accordion">
       <h2><strong>Directorio</strong></h2>
       <div className="d-flex flex-wrap gap-4 mt-4">
         {instituciones.map(inst => (
