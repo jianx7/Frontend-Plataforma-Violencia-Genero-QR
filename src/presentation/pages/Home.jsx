@@ -77,7 +77,7 @@ const [showChat, setShowChat] = useState(false);
             >
               <IoWoman size={70} />
             </Button>
-            <p className="circle-text fs-5">Instancias de la mujer</p>
+            <p className="circle-text fs-5">Acerca de la violencia digital</p>
           </div>
 
           <div className="circle-wrapper">
@@ -161,7 +161,7 @@ const [showChat, setShowChat] = useState(false);
         <Accordion defaultActiveKey="0" className="mt-4 text-start">
           <Accordion.Item eventKey="0" className="faq-accordion">
             <Accordion.Header>
-              <strong>¿Qué es la PDCVG-QR?</strong>
+              <strong>¿Qué es "Segura"?</strong>
             </Accordion.Header>
             <Accordion.Body>
               Es una plataforma digital diseñada para proporcionar información,

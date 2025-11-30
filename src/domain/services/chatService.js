@@ -27,9 +27,9 @@ export const chatService = {
     }
   },
 
-  getCase: async (userId) => {
+  getCase: async (sessionId) => {
     try {
-      const response = await chatApi.get(`casos/${userId}`);
+      const response = await chatApi.get(`casos/${sessionId}`);
       return response.data;
     }
     catch (error) {

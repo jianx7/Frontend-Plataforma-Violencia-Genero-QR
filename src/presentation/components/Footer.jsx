@@ -30,9 +30,9 @@ export default function Footer() {
           <Col md={7}>
             <Row className="justify-content-end text-start">
               <Col md={4}>
-                <h5 className="fw-bold">PDCVG-QR</h5>
+                <h5 className="fw-bold">Segura</h5>
                 <p className="fw-semibold mb-1">Contáctanos</p>
-                <p className="mb-1">pdcvg_qr@gmail.com</p>
+                <p className="mb-1">seguraqr@gmail.com</p>
                 <p className="mb-1">+52 9988976683</p>
                 <p>Cancún, Quintana Roo</p>
                 <div className="d-flex justify-content-center gap-3 mt-3">

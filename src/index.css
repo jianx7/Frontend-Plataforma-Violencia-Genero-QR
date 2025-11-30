@@ -88,7 +88,7 @@ body {
 }
 
 .offcanvas.custom {
-  --bs-offcanvas-width: 600px;
+  --bs-offcanvas-width: 700px;
 }
 
 /*NAVBAR*/
@@ -361,7 +361,7 @@ button.btn-danger:hover {
 /* CARTILLA DE DERECHOS  */
 .cartilla {
   max-width: 800px;
-  height: 300px;
+  min-height: 300px;
 }
 
 .cartilla img {
@@ -387,6 +387,7 @@ button.btn-danger:hover {
 .footer-input {
   width: 400px;
   justify-content: center;
+  margin-left: 60px;
 }
 
 /* SIDEBAR */
@@ -511,7 +512,7 @@ button.btn-danger:hover {
 }
 
 
-.rotate-icon div{
+/*rotate-icon div
   transition: transform 0.3s ease-in-out;
   transform: rotate(180deg);
-}
+*/
