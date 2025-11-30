@@ -1,67 +1,71 @@
-import { Container, Row, Col, Button, Form, InputGroup } from "react-bootstrap";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="footer-custom p-5">
-        {/*Formulario*/}
-      <Container fluid>
-        <Row className="align-items-start text-light">
-          <Col md={5} className="mb-4">
-          <p className="smalltext-muted mb-2">
-              Plataforma desarrollada para proteger a las mujeres de Quintana Roo.
+    <footer className="footer-custom text-light pt-5 pb-3 mt-5">
+      <Container>
+        <Row className="gy-4">
+          
+          {/* Formulario */}
+          <Col md={5}>
+            <h5 className="fw-bold">Tu opinión importa</h5>
+            <p className="small mb-3">
+              Si tienes algún comentario o presentas fallas en nuestra plataforma, escríbenos aquí.
             </p>
-            <h5 className="mb-0">Mantengamos el contacto</h5>
-            <h4 className="fw-bold mb-3">
-              Tu opinión importa
-            </h4>
-            <p className="small">
-              Si tienes algún comentario o presentas fallas en nuestra
-              plataforma, escribelo aquí.
-            </p>
-            <InputGroup className="mt-3 footer-input ">
-              <Form.Control placeholder="Escribe aquí" />
-              <Button className="btn-gob">Enviar</Button>
-            </InputGroup>
+
+            <Form className="d-flex gap-2">
+              <Form.Control 
+                type="email" 
+                placeholder="Escribe tu correo o comentario…" 
+              />
+              <Button variant="secondary">
+                Enviar
+              </Button>
+            </Form>
           </Col>
-        
-        {/* Información*/}
+
+          {/* Col derecha */}
           <Col md={7}>
-            <Row className="justify-content-end text-start">
-              <Col md={4}>
-                <h5 className="fw-bold">PDCVG-QR</h5>
-                <p className="fw-semibold mb-1">Contáctanos</p>
-                <p className="mb-1">pdcvg_qr@gmail.com</p>
-                <p className="mb-1">+52 9988976683</p>
-                <p>Cancún, Quintana Roo</p>
-                <div className="d-flex justify-content-center gap-3 mt-3">
-                  <a href="#" className="text-white"><FaFacebookSquare size={22} /></a>
-                  <a href="#" className="text-white"><FaSquareXTwitter size={22} /></a>
+            <Row>
+              <Col md={4} className="mb-3">
+                <h6 className="fw-bold">PDCVG-QR</h6>
+                <p className="small mb-1 fw-semibold">Contacto</p>
+                <p className="small mb-1">pdcvg_qr@gmail.com</p>
+                <p className="small mb-1">+52 998 897 6683</p>
+                <p className="small">Cancún, Quintana Roo</p>
+
+                <div className="d-flex gap-3 pt-2">
+                  <a href="#" className="footer-link">
+                    <FaFacebookSquare size={22} />
+                  </a>
+                  <a href="#" className="footer-link">
+                    <FaSquareXTwitter size={22} />
+                  </a>
                 </div>
               </Col>
 
-              {/* Términos */}
-              <Col md={4} className="text-start">
+              <Col md={4} className="mb-3">
                 <h6 className="fw-semibold">Términos</h6>
                 <p className="small mb-0">
-                  Al acceder y utilizar esta aplicación web, el usuario acepta los presentes Términos y Condiciones. Si no está de acuerdo, debe abstenerse de utilizar la plataforma.
+                  Al usar la plataforma aceptas los Términos y Condiciones. Si no estás de acuerdo, evita utilizarla.
                 </p>
               </Col>
 
-              {/* Privacidad */}
-              <Col md={4} className="text-start">
+              <Col md={4} className="mb-3">
                 <h6 className="fw-semibold">Privacidad</h6>
                 <p className="small mb-0">
-                  Los datos personales serán conservados el tiempo necesario para cumplir con las finalidades antes mencionadas y conforme a lo establecido por la Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados.
+                  Los datos se conservan conforme a la Ley General de Protección de Datos en Posesión de Sujetos Obligados.
                 </p>
               </Col>
             </Row>
           </Col>
         </Row>
-        <hr className="my-4 border-light opacity-2"/>
-        <p className="text-center small text-light mb-0">
-          © 2025 GITASVG-QR | Todos los derechos reservados
+
+        <hr className="border-secondary my-4" />
+        <p className="text-center small mb-0">
+          © 2025 PDCVG-QR | Todos los derechos reservados
         </p>
       </Container>
     </footer>
