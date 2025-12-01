@@ -7,7 +7,6 @@ import Chatbot from "../presentation/pages/Chatbot";
 import Predenuncia from "../presentation/pages/Predenuncia";
 import UserInfo from "../presentation/pages/UserInfo";
 import Security from "../presentation/pages/Security";
-import Logout from "../presentation/pages/Logout";
 import Directorio from "../presentation/pages/Directorio";
 import Instancias from "../presentation/pages/Instancias";
 import Derechos from "../presentation/pages/Derechos";
@@ -20,46 +19,47 @@ import Agenda from "../presentation/pages/Agenda";
 import PrivateRoute from "../presentation/components/PrivateRoute";
 import PublicRoute from "../presentation/components/PublicRoute";
 
-
 export default function RoutesApp() {
   return (
     <Routes>
-      {/* Rutas públicas (Login y Register) */}
-      <Route path="/login" element={
-        <PublicRoute>
-          <Login />
-        </PublicRoute>
-      } />
-      <Route path="/register" element={
-        <PublicRoute>
-          <Register />
-        </PublicRoute>
-      } />
+      {/* Rutas públicas */}
+      <Route path="/login"element={<PublicRoute> <Login /> </PublicRoute>}/>
+      <Route path="/register" element={<PublicRoute><Register /></PublicRoute>}/>
+
 
       {/* Rutas protegidas de usuario normal */}
-      <Route path="" element={
-        <PrivateRoute>
-          <Layout />
-        </PrivateRoute>
-      }>
+      <Route
+        path=""
+        element={
+          <PrivateRoute>
+            <Layout />
+          </PrivateRoute>
+        }
+      >
         <Route path="/" element={<Home />} />
-        <Route path="/user-info" element={<UserInfo />} />
-        <Route path="/security" element={<Security />} />
-        <Route path="/logout" element={<Logout />} />
+
+        {/* resto de páginas para users */}
         <Route path="/predenuncia" element={<Predenuncia />} />
         <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/seguimiento" element={<Seguimiento />} />
         <Route path="/directorio" element={<Directorio />} />
         <Route path="/instancias" element={<Instancias />} />
         <Route path="/derechos" element={<Derechos />} />
+
+        {/* PERFIL USUARIO */}
+        <Route path="perfil/user-info" element={<UserInfo />} />
+        <Route path="perfil/security" element={<Security />} />
       </Route>
 
       {/* Rutas protegidas de administrador */}
-      <Route path="/admin" element={
-        <PrivateRoute requireAdmin={true}>
-          <AdminLayout />
-        </PrivateRoute>
-      }>
+      <Route
+        path="/admin"
+        element={
+          <PrivateRoute requireAdmin={true}>
+            <AdminLayout />
+          </PrivateRoute>
+        }
+      >
         <Route path="dashboard" element={<DashboardAdmin />} />
         <Route path="casos" element={<MisCasos />} />
         <Route path="agenda" element={<Agenda />} />

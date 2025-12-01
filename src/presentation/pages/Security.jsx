@@ -54,43 +54,6 @@ export default function Security() {
                 </Form>
               </Card.Body>
             </Card>
-
-            <Card className="shadow-sm border-0">
-              <Card.Body>
-                <Card.Title className="mb-3">Sesiones activas</Card.Title>
-                <Card.Text className="text-muted">
-                  Estos son los dispositivos donde has iniciado sesión.
-                </Card.Text>
-
-                <ListGroup variant="flush" className="mb-3">
-                  <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                    <div>
-                      <strong>Chrome</strong> — Windows 11
-                      <p className="text-muted small mb-0">
-                        Último acceso: hace 2 horas
-                      </p>
-                    </div>
-                    <Button variant="outline-danger" size="sm">
-                      Cerrar sesión
-                    </Button>
-                  </ListGroup.Item>
-
-                  <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                    <div>
-                      <strong>Safari</strong> — iPhone 14
-                      <p className="text-muted small mb-0">
-                        Último acceso: hace 1 día
-                      </p>
-                    </div>
-                    <Button variant="outline-danger" size="sm">
-                      Cerrar sesión
-                    </Button>
-                  </ListGroup.Item>
-                </ListGroup>
-
-                <Button variant="danger">Cerrar todas las sesiones</Button>
-              </Card.Body>
-            </Card>
           </Col>
         </Row>
       </Container>
