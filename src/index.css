@@ -350,7 +350,7 @@ button.btn-danger:hover {
 /* CARTILLA DE DERECHOS  */
 .cartilla {
   max-width: 800px;
-  height: 300px;
+  min-height: 300px;
 }
 
 .cartilla img {
