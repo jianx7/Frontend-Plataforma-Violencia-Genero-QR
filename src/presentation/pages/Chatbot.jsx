@@ -47,14 +47,14 @@ export default function Chatbot() {
 
                     return {
                         sender: isUser ? "user" : "bot",
-                        text: cleanText
+                        text: isUser ? cleanText : formatMarkdown(cleanText)
                     };
                 });
 
                 setMessages((prev) => [...prev, ...historyMessages]);
 
             } catch (error) {
-                console.log("Sin historial o error:", error);
+                console.log("Sin historial:", error);
             }
         };
 
@@ -98,11 +98,11 @@ export default function Chatbot() {
         }
     };
 
-    // generar caso
+    // generar caso en predenuncia.jsx
     useEffect(() => {
         const loadCaseData = async () => {
             try {
-                const data = await chatService.getCase(userId);
+                const data = await chatService.getCase(sessionId);
 
                 // Guardar en localStorage para el formulario
                 localStorage.setItem("predenuncia_data", JSON.stringify(data));
@@ -143,7 +143,7 @@ export default function Chatbot() {
                         </div>
 
                         <div>
-                            <h5 className="mb-0 fw-bold">GITASVG-QR Bot</h5>
+                            <h5 className="mb-0 fw-bold">Segura Bot</h5>
                             <small className="text-light" style={{ fontSize: '14px' }}>
                                 <span
                                     style={{

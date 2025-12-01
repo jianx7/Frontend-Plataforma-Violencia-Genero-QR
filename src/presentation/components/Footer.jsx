@@ -28,6 +28,7 @@ export default function Footer() {
 
           {/* Col derecha */}
           <Col md={7}>
+<<<<<<< HEAD
             <Row>
               <Col md={4} className="mb-3">
                 <h6 className="fw-bold">PDCVG-QR</h6>
@@ -43,6 +44,18 @@ export default function Footer() {
                   <a href="#" className="footer-link">
                     <FaSquareXTwitter size={22} />
                   </a>
+=======
+            <Row className="justify-content-end text-start">
+              <Col md={4}>
+                <h5 className="fw-bold">Segura</h5>
+                <p className="fw-semibold mb-1">Contáctanos</p>
+                <p className="mb-1">seguraqr@gmail.com</p>
+                <p className="mb-1">+52 9988976683</p>
+                <p>Cancún, Quintana Roo</p>
+                <div className="d-flex justify-content-center gap-3 mt-3">
+                  <a href="#" className="text-white"><FaFacebookSquare size={22} /></a>
+                  <a href="#" className="text-white"><FaSquareXTwitter size={22} /></a>
+>>>>>>> 4d6dd9b03e17280ebf2a4a06089ae12a7c4b077b
                 </div>
               </Col>
 
