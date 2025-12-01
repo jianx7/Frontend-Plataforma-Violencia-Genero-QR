@@ -1,18 +1,13 @@
 import { Form, Button, Row, Col, Modal, Container, Alert, Spinner } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { chatService } from "../../domain/services/chatService";
+import { formatDate } from "../utils/formatDate";
 
 export default function Predenuncia() {
     const sessionId = localStorage.getItem("session_id");
     const [loading, setLoading] = useState(true);
     const [modal, setModal] = useState(false)
 
-    {/*const[correo, setCorreo]=useState("marian@gmail.com");
-    const [nombre, setNombre] = useState("");
-    const [apellido, setApellido] = useState("");
-    const [descripcion, setDescripcion] = useState("");*/}
-
-    const [municipio, setMunicipio] = useState("");
     const municipios = [
         "Benito Juárez",
         "Cozumel",
@@ -27,11 +22,10 @@ export default function Predenuncia() {
         "Puerto Morelos"
     ];
 
-    const [tipoViolencia, setTipoViolencia] = useState("");
 
     const tiposViolencia = [
         "Psicológica",
-        "Fisica",
+        "Física",
         "Patrimonial",
         "Económica",
         "Sexual",
@@ -65,9 +59,9 @@ export default function Predenuncia() {
                     nombre: data.nombre || "",
                     apellido_paterno: data.apellido_paterno || "",
                     apellido_materno: data.apellido_materno || "",
-                    fecha_nacimiento: data.fecha_nacimiento || "",
+                    fecha_nacimiento: data.fecha_nacimiento ? formatDate(data.fecha_nacimiento) : "",
                     municipio: data.municipio || "",
-                    fecha_hechos: data.fecha_hechos || "",
+                    fecha_hechos: data.fecha_hechos ? formatDate(data.fecha_hechos) : "",
                     tipo_violencia: data.tipo_violencia || "",
                     descripcion_hechos: data.descripcion_hechos || ""
                 };
@@ -86,7 +80,7 @@ export default function Predenuncia() {
         if (sessionId) loadCaseData();
     }, [sessionId]);
 
-    {/*} useEffect(() => {
+    {/*useEffect(() => {
         const fetchCase = async () => {
             try {
                 const data = await chatService.getCase(sessionId);
@@ -110,6 +104,8 @@ export default function Predenuncia() {
         }
     }, []);
 
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -120,12 +116,11 @@ export default function Predenuncia() {
     };
 
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setModal(true)
     };
-    //estado de carga
+
 
     return (
         <Container>
@@ -231,7 +226,7 @@ export default function Predenuncia() {
                                 ))}
                             </Form.Select>
 
-                            {municipio && <p className="mt-2">Seleccionado: {municipio}</p>}
+                            {formData.municipio && <p className="mt-2">Seleccionado: {formData.municipio}</p>}
                         </Form.Group>
 
                         <Form.Group className="mb-4" controlId="fecha-06">
@@ -250,10 +245,8 @@ export default function Predenuncia() {
                         <Form.Group className="mb-4" controlId="tipo-05">
                             <Form.Label className="fs-5 text">Tipo de violencia: *</Form.Label>
                             <Form.Select
-                                //value={tipoViolencia}
                                 name="tipo_violencia"
                                 size="lg"
-                                //onChange={(e) => setTipoViolencia(e.target.value)}
                                 value={formData.tipo_violencia || ""}
                                 onChange={handleChange}
 
@@ -266,7 +259,7 @@ export default function Predenuncia() {
                                 ))}
                             </Form.Select>
 
-                            {tipoViolencia && <p className="mt-2">Seleccionado: {tipoViolencia}</p>}
+                            {formData.tipoViolencia && <p className="mt-2">Seleccionado: {formData.tipoViolencia}</p>}
                         </Form.Group>
 
 
