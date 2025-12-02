@@ -2,8 +2,8 @@ import { Card } from "react-bootstrap";
 
 export default function StatCard({ title, value, variant }) {
   const colors = {
-    danger: "#9d2449",
-    warning: "#C0A56B",
+    danger: "#3d185e",
+    warning: "#c79ea2",
     success: "#13322B",
     primary: "#611232",
   };

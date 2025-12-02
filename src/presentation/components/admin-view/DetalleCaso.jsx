@@ -28,7 +28,7 @@ export default function DetalleCaso() {
   }
 
   return (
-    <Container className="py-4">
+    <Container fluid className="dashboard-container p-4">
       <h2>Folio: {caso.folio}</h2>
           <p><strong>Tipo:</strong> {caso.tipo} — <strong>Estado:</strong> {caso.estado}</p>
       <Row>

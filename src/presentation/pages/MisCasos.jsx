@@ -28,7 +28,7 @@ export default function MisCasos() {
 
   return (
     
-      <Container fluid className="py-4">
+      <Container fluid className=" dashboard-container py-4">
         <Row>
           {/* ===== SIDEBAR ===== */}
           <Col md={3} lg={2} className="mb-4">
