@@ -1,39 +1,9 @@
+// src/domain/services/authService.jsx
 import axiosClient from '../../infrastructure/http/axiosClient';
-
-// Modo de desarrollo: usar autenticación mock
-const USE_MOCK_AUTH = true;
-
-// Usuarios de prueba
-const MOCK_USERS = {
-  admin: {
-    email: 'admin@test.com',
-    password: 'admin123',
-    userData: {
-      id: 1,
-      nombre: 'Administrador',
-      email: 'admin@test.com',
-      rol: 'admin',
-      tipo_usuario: 'administrador',
-      is_admin: true,
-    },
-  },
-  user: {
-    email: 'usuario@test.com',
-    password: 'user123',
-    userData: {
-      id: 2,
-      nombre: 'Usuario Normal',
-      email: 'usuario@test.com',
-      rol: 'denunciante',
-      tipo_usuario: 'denunciante',
-      is_admin: false,
-    },
-  },
-};
 
 /**
  * Servicio de autenticación
- * Maneja login, registro, logout y validación de sesión
+ * Conectado con FastAPI backend (sin endpoint /auth/me)
  */
 const authService = {
   /**
@@ -42,63 +12,136 @@ const authService = {
    * @returns {Promise} Datos del usuario y token
    */
   async login(credentials) {
-    // MODO MOCK: Autenticación local sin backend
-    if (USE_MOCK_AUTH) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          // Verificar credenciales contra usuarios mock
-          const mockUser = Object.values(MOCK_USERS).find(
-            (u) => u.email === credentials.email && u.password === credentials.password
-          );
-
-          if (mockUser) {
-            // Generar token mock
-            const mockToken = `mock_token_${Date.now()}`;
-            const mockRefreshToken = `mock_refresh_${Date.now()}`;
-
-            // Guardar en localStorage
-            localStorage.setItem('token', mockToken);
-            localStorage.setItem('refresh_token', mockRefreshToken);
-            localStorage.setItem('token_expires_in', '3600');
-            localStorage.setItem('user', JSON.stringify(mockUser.userData));
-
-            resolve({
-              token: mockToken,
-              user: mockUser.userData,
-            });
-          } else {
-            reject({
-              message: 'Credenciales inválidas',
-              detail: 'El correo o la contraseña son incorrectos',
-            });
-          }
-        }, 500); // Simular latencia de red
+    try {
+      const response = await axiosClient.post('/auth/login', {
+        correo_electronico: credentials.email,
+        contrasena: credentials.password,
       });
-    }
 
-    // MODO REAL: Conectar con backend
-    const response = await axiosClient.post('/auth/login', {
-      correo_electronico: credentials.email,
-      contrasena: credentials.password,
-    });
-    
-    if (response.access_token) {
-      localStorage.setItem('token', response.access_token);
-      localStorage.setItem('refresh_token', response.refresh_token);
-      localStorage.setItem('token_expires_in', response.expires_in);
-    }
-    
-    if (credentials.email) {
-      const userData = {
-        email: credentials.email,
-      };
+      // Guardar tokens en localStorage
+      if (response.access_token) {
+        localStorage.setItem('token', response.access_token);
+        localStorage.setItem('refresh_token', response.refresh_token);
+        localStorage.setItem('token_expires_in', response.expires_in);
+      }
+
+      // Decodificar el token JWT para obtener información del usuario
+      const userData = this.getUserFromToken(response.access_token);
+      
+      // Enriquecer con el email del usuario
+      userData.email = credentials.email;
+      
+      // Guardar en localStorage
       localStorage.setItem('user', JSON.stringify(userData));
+
+      return {
+        token: response.access_token,
+        user: userData,
+      };
+    } catch (error) {
+      console.error('Error en login:', error);
+      
+      // Manejar diferentes formatos de error del backend
+      let errorMessage = 'Credenciales inválidas';
+      
+      if (error?.detail) {
+        errorMessage = error.detail;
+      } else if (error?.message) {
+        errorMessage = error.message;
+      }
+      
+      throw {
+        message: errorMessage,
+        detail: 'El correo o la contraseña son incorrectos',
+      };
+    }
+  },
+
+  /**
+   * Decodificar token JWT para obtener información del usuario
+   * @param {string} token - JWT token
+   * @returns {Object} Datos del usuario extraídos del token
+   */
+  getUserFromToken(token) {
+    try {
+      // Decodificar el payload del JWT (parte del medio)
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const payload = JSON.parse(window.atob(base64));
+      
+      // El token contiene: sub (account_id), name (email), exp, iat
+      // Según tu backend: subject=account_id, name=email
+      
+      return {
+        id: payload.sub || null, // account_id
+        nombre: payload.name || '', // Por ahora será el email
+        email: payload.name || '', // El email viene en "name"
+        rol_id: this.inferRoleFromToken(payload),
+        rol: this.mapRoleName(this.inferRoleFromToken(payload)),
+        tipo_usuario: this.mapRoleName(this.inferRoleFromToken(payload)),
+        is_admin: this.inferRoleFromToken(payload) === 3,
+      };
+    } catch (error) {
+      console.error('Error decodificando token:', error);
+      return {
+        id: null,
+        nombre: '',
+        email: '',
+        rol_id: 1, // Por defecto denunciante
+        rol: 'denunciante',
+        tipo_usuario: 'denunciante',
+        is_admin: false,
+      };
+    }
+  },
+
+  /**
+   * Inferir rol del token (si está incluido) o del email
+   * @param {Object} payload - Payload del JWT
+   * @returns {number} ID del rol (1=denunciante, 2=orientador, 3=admin)
+   */
+  inferRoleFromToken(payload) {
+    // Si el token incluye rol_id, usarlo
+    if (payload.rol_id) {
+      return payload.rol_id;
     }
     
-    return {
-      token: response.access_token,
-      user: { email: credentials.email },
+    // Si el token incluye role, usarlo
+    if (payload.role) {
+      const roleMap = {
+        'denunciante': 1,
+        'orientador': 2,
+        'admin': 3,
+        'administrador': 3,
+      };
+      return roleMap[payload.role.toLowerCase()] || 1;
+    }
+    
+    // Inferir por email (convención común)
+    const email = payload.name || '';
+    if (email.includes('@admin.') || email.includes('admin@')) {
+      return 3; // Admin
+    }
+    if (email.includes('@orientador.') || email.includes('orientador@')) {
+      return 2; // Orientador
+    }
+    
+    // Por defecto: denunciante
+    return 1;
+  },
+
+  /**
+   * Mapear rol_id a nombre legible
+   * @param {number} rolId - ID del rol
+   * @returns {string} Nombre del rol
+   */
+  mapRoleName(rolId) {
+    const roles = {
+      1: 'denunciante',
+      2: 'orientador',
+      3: 'admin',
     };
+    return roles[rolId] || 'denunciante';
   },
 
   /**
@@ -107,44 +150,41 @@ const authService = {
    * @returns {Promise} Datos del usuario registrado
    */
   async register(userData) {
-    // MODO MOCK: Registro simulado
-    if (USE_MOCK_AUTH) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          // Validar que las contraseñas coincidan
-          if (userData.password !== userData.confirmPassword) {
-            reject({
-              message: 'Las contraseñas no coinciden',
-            });
-            return;
-          }
-
-          // Simular registro exitoso
-          resolve({
-            message: 'Usuario registrado exitosamente',
-            user: {
-              nombre: userData.nombre,
-              email: userData.email,
-            },
-          });
-        }, 500);
+    try {
+      const response = await axiosClient.post('/auth/register/denunciante', {
+        nombre: userData.nombre,
+        correo_electronico: userData.email,
+        contrasena: userData.password,
+        confirmar_contrasena: userData.confirmPassword,
       });
-    }
 
-    // MODO REAL: Conectar con backend
-    const response = await axiosClient.post('/auth/register/denunciante', {
-      nombre: userData.nombre,
-      correo_electronico: userData.email,
-      contrasena: userData.password,
-      confirmar_contrasena: userData.confirmPassword,
-    });
-    
-    if (response.token) {
-      localStorage.setItem('token', response.token);
-      localStorage.setItem('user', JSON.stringify(response.user));
+      return {
+        success: true,
+        message: 'Usuario registrado exitosamente',
+        data: response,
+      };
+    } catch (error) {
+      console.error('Error en registro:', error);
+      
+      let errorMessage = 'Error al registrar usuario';
+      
+      if (error?.detail) {
+        errorMessage = error.detail;
+      } else if (error?.message) {
+        errorMessage = error.message;
+      }
+      
+      // Verificar si es error de correo duplicado
+      if (errorMessage.toLowerCase().includes('correo') && 
+          errorMessage.toLowerCase().includes('registrado')) {
+        errorMessage = 'Este correo electrónico ya está registrado';
+      }
+      
+      throw {
+        message: errorMessage,
+        detail: errorMessage,
+      };
     }
-    
-    return response;
   },
 
   /**
@@ -192,17 +232,28 @@ const authService = {
   isAdmin() {
     const user = this.getCurrentUser();
     if (!user) return false;
-    
-    // Verificar múltiples campos para identificar admin
+
+    // Verificar por rol_id (3 = admin)
+    if (user.rol_id === 3) return true;
+
+    // Verificar por múltiples campos como fallback
     return (
       user.rol === 'admin' ||
       user.rol === 'administrador' ||
       user.tipo_usuario === 'admin' ||
       user.tipo_usuario === 'administrador' ||
-      user.tipo_usuario === 'encargado' ||
-      user.is_admin === true ||
-      (user.email && user.email.includes('@admin.'))
+      user.is_admin === true
     );
+  },
+
+  /**
+   * Verificar si el usuario es orientador
+   * @returns {boolean}
+   */
+  isOrientador() {
+    const user = this.getCurrentUser();
+    if (!user) return false;
+    return user.rol_id === 2 || user.rol === 'orientador';
   },
 
   /**
@@ -214,21 +265,56 @@ const authService = {
   },
 
   /**
-   * Obtener usuarios mock para desarrollo
-   * @returns {Object} Usuarios de prueba
+   * Cambiar contraseña
+   * @param {Object} passwordData - { contrasena_actual, nueva_contrasena, confirmar_contrasena }
+   * @returns {Promise}
    */
-  getMockUsers() {
-    if (USE_MOCK_AUTH) {
+  async changePassword(passwordData) {
+    try {
+      const response = await axiosClient.post('/auth/change-password', {
+        contrasena_actual: passwordData.contrasena_actual,
+        nueva_contrasena: passwordData.nueva_contrasena,
+        confirmar_contrasena: passwordData.confirmar_contrasena,
+      });
+
       return {
-        admin: {
-          email: MOCK_USERS.admin.email,
-          password: MOCK_USERS.admin.password,
-        },
-        user: {
-          email: MOCK_USERS.user.email,
-          password: MOCK_USERS.user.password,
-        },
+        success: true,
+        message: response.message || 'Contraseña actualizada correctamente',
       };
+    } catch (error) {
+      console.error('Error al cambiar contraseña:', error);
+      
+      let errorMessage = 'Error al cambiar la contraseña';
+      
+      if (error?.detail) {
+        errorMessage = error.detail;
+      } else if (error?.message) {
+        errorMessage = error.message;
+      }
+      
+      throw {
+        message: errorMessage,
+      };
+    }
+  },
+
+  /**
+   * Refrescar información del usuario desde el token actual
+   * Útil si el token fue renovado
+   */
+  refreshUserInfo() {
+    const token = this.getToken();
+    if (token) {
+      const userData = this.getUserFromToken(token);
+      const currentUser = this.getCurrentUser();
+      
+      // Mantener el email si ya lo tenemos
+      if (currentUser?.email) {
+        userData.email = currentUser.email;
+      }
+      
+      localStorage.setItem('user', JSON.stringify(userData));
+      return userData;
     }
     return null;
   },

@@ -13,7 +13,7 @@ import { useAuth } from "../../app/context/AuthContext";
 
 export default function Register() {
   const navigate = useNavigate();
-  const { register, isAdmin } = useAuth();
+  const { register} = useAuth();
 
   // Estados del formulario
   const [formData, setFormData] = useState({

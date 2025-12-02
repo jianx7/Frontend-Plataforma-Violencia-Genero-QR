@@ -1,59 +1,60 @@
 import { useEffect, useState } from "react";
 import ProfileLayout from "../components/ProfileLayout";
 import { Form, Button, Container, Row, Col, Spinner, Alert } from "react-bootstrap";
+import { useAuth } from "../../app/context/AuthContext";
 
 export default function UserInfo() {
-  // Estados
+  const { user: authUser } = useAuth();
+  
   const [user, setUser] = useState({
-    username: "",
+    nombre: "",
     email: "",
   });
 
-  const [loading, setLoading] = useState(true);        // Mostrar spinner mientras carga
-  const [saving, setSaving] = useState(false);         // Mientras se envía
-  const [message, setMessage] = useState(null);        // Mensaje de éxito/error
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState(null);
 
-  /** 🔥 OBTENER INFO DEL USUARIO */
+  // Cargar información del usuario
   useEffect(() => {
-    // 🔁 MOCK REQUEST — reemplace con fetch real
-    setTimeout(() => {
+    if (authUser) {
       setUser({
-        username: "inesita",
-        email: "inesita@mail.com",
+        nombre: authUser.nombre || "",
+        email: authUser.email || "",
       });
       setLoading(false);
-    }, 800);
-  }, []);
+    }
+  }, [authUser]);
 
-  /** 📝 Manejar cambios de input */
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  /** 📤 Enviar form */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
     setMessage(null);
 
     try {
-      // 🔁 MOCK de actualización
-      // Aquí reemplaza por fetch PUT o PATCH a tu API
+      // TODO: Implementar endpoint de actualización en el backend
+      // Por ahora solo mostramos mensaje
       setTimeout(() => {
         setSaving(false);
-        setMessage({ type: "success", text: "Datos actualizados correctamente." });
-      }, 1000);
+        setMessage({ 
+          type: "info", 
+          text: "La actualización de datos estará disponible próximamente." 
+        });
+      }, 500);
 
-      /**
-      EJEMPLO de PUT real a FastAPI 👇
-      
-      const resp = await fetch("https://tuapi.com/user/123", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user),
+      /* Cuando esté listo el endpoint:
+      const response = await axiosClient.put('/user/profile', {
+        nombre: user.nombre,
+        email: user.email,
       });
       
-      if (!resp.ok) throw new Error("Error al actualizar");
+      if (response.success) {
+        setMessage({ type: "success", text: "Datos actualizados correctamente." });
+      }
       */
 
     } catch (err) {
@@ -71,25 +72,22 @@ export default function UserInfo() {
               Información de la cuenta
             </h2>
 
-            {/*⌛ LOADING */}
             {loading ? (
               <div className="text-center">
                 <Spinner animation="border" />
               </div>
             ) : (
               <Form onSubmit={handleSubmit}>
-                
-                {/* Mensaje de feedback */}
                 {message && (
                   <Alert variant={message.type}>{message.text}</Alert>
                 )}
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Nombre de usuario</Form.Label>
+                  <Form.Label>Nombre completo</Form.Label>
                   <Form.Control
                     type="text"
-                    name="username"
-                    value={user.username}
+                    name="nombre"
+                    value={user.nombre}
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -101,7 +99,11 @@ export default function UserInfo() {
                     name="email"
                     value={user.email}
                     onChange={handleChange}
+                    disabled // Por seguridad, el email no debería cambiar fácilmente
                   />
+                  <Form.Text className="text-muted">
+                    El correo electrónico no puede ser modificado.
+                  </Form.Text>
                 </Form.Group>
 
                 <Button

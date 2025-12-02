@@ -1,3 +1,4 @@
+// src/domain/http/axiosClient.js
 import axios from 'axios';
 
 // URL base de la API
