@@ -6,7 +6,7 @@ export async function apiGet(path) {
   const res = await fetch(API_URL + path, {
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("access_token") || ""}`
+      "Authorization": `Bearer ${localStorage.getItem("token") || ""}`
     }
   });
   if (!res.ok) throw new Error("Error en GET " + path);
@@ -19,9 +19,10 @@ export async function apiPost(path, body) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("access_token") || ""}`
+      "Authorization": `Bearer ${localStorage.getItem("token") || ""}`
     },
     body: JSON.stringify(body),
+    
   });
   if (!res.ok) throw new Error("Error en POST " + path);
   return res.json();
