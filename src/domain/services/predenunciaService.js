@@ -1,9 +1,9 @@
-import { apiPost } from "../../infrastructure/api";  // usa la api
+import axiosClient from '../../infrastructure/http/axiosClient';
 
 export const predenunciaService = {
     sendPredenuncia: async (payload) => {
         try {
-            const responsedenuncia = await apiPost(
+            const responsedenuncia = await axiosClient.post(
                 '/pre-complaint/register/predenuncia',
                 payload
             );
@@ -14,4 +14,11 @@ export const predenunciaService = {
         }
     },
 };
+
+
+
+{/*export async function sendPredenuncia(payload) {
+  return await axiosClient.post('/pre-complaint/register/predenuncia', payload);
+}*/}
+
 
