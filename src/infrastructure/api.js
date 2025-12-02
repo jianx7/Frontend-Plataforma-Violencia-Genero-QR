@@ -1,3 +1,4 @@
+// src/infraestructure/AuthContex.jsx
 const API_URL = "http://127.0.0.1:8000"; // Se cambiará cuando el backend esté listo.
 
 // GET genérico
