@@ -8,7 +8,7 @@ body {
 /*HOME*/
 .fondo-home {
   background-color: #9d2449;
-  color: #ffffff;
+  color: #f8f8f4;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@ body {
 }
 
 .btn-gob {
-  background-color: #ddc9a3;
+  background-color: #c0a56b;
   border: none;
   color: #13322b;
   font-weight: bold;
@@ -261,7 +261,7 @@ button.btn-danger:hover {
 }
 
 .btn-circle:hover {
-  background-color: #9b1d50;
+  background-color: #c79ea2;
 }
 
 .circle-wrapper {
@@ -327,7 +327,7 @@ button.btn-danger:hover {
   background-size: auto 100%;
   /* se ajusta verticalmente y se repite horizontalmente */
   background-position: center;
-  opacity: 0.4;
+  opacity: 0.7;
   /* puedes ajustar */
   z-index: 1;
 }

@@ -105,12 +105,12 @@ const [showChat, setShowChat] = useState(false);
               className="bg-repeat"
               style={{
                 backgroundImage:
-                  "url('../src/presentation/assets/carrusel-1.jpeg')",
+                  "url('../src/presentation/assets/carrusel-1.png')",
               }}
             ></div>
 
             <img
-              src="../src/presentation/assets/carrusel-1.jpeg"
+              src="../src/presentation/assets/carrusel-1.png"
               alt="slide 1"
               className="d-block mx-auto"
             />
@@ -121,12 +121,12 @@ const [showChat, setShowChat] = useState(false);
               className="bg-repeat"
               style={{
                 backgroundImage:
-                  "url('../src/presentation/assets/carrusel-2.jpeg')",
+                  "url('../src/presentation/assets/carrusel-2.png')",
               }}
             ></div>
 
             <img
-              src="../src/presentation/assets/carrusel-2.jpeg"
+              src="../src/presentation/assets/carrusel-2.png"
               alt="slide 2"
               className="d-block mx-auto"
             />
@@ -137,12 +137,44 @@ const [showChat, setShowChat] = useState(false);
               className="bg-repeat"
               style={{
                 backgroundImage:
-                  "url('../src/presentation/assets/carrusel-3.jpeg')",
+                  "url('../src/presentation/assets/carrusel-3.png')",
               }}
             ></div>
 
             <img
-              src="../src/presentation/assets/carrusel-3.jpeg"
+              src="../src/presentation/assets/carrusel-3.png"
+              alt="slide 3"
+              className="d-block mx-auto"
+            />
+          </Carousel.Item>
+
+          <Carousel.Item>
+            <div
+              className="bg-repeat"
+              style={{
+                backgroundImage:
+                  "url('../src/presentation/assets/carrusel-5.png')",
+              }}
+            ></div>
+
+            <img
+              src="../src/presentation/assets/carrusel-4.png"
+              alt="slide 3"
+              className="d-block mx-auto"
+            />
+          </Carousel.Item>
+
+          <Carousel.Item>
+            <div
+              className="bg-repeat"
+              style={{
+                backgroundImage:
+                  "url('../src/presentation/assets/carrusel-5.png')",
+              }}
+            ></div>
+
+            <img
+              src="../src/presentation/assets/carrusel-5.png"
               alt="slide 3"
               className="d-block mx-auto"
             />
