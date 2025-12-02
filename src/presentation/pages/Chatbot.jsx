@@ -98,8 +98,8 @@ export default function Chatbot() {
         }
     };
 
-    // generar caso en predenuncia.jsx
-    useEffect(() => {
+    // generar y guardar caso en predenuncia.jsx
+    {/*useEffect(() => {
         const loadCaseData = async () => {
             try {
                 const data = await chatService.getCase(sessionId);
@@ -113,7 +113,7 @@ export default function Chatbot() {
         };
 
        loadCaseData();
-    }, []);
+    }, []);*/}
 
 
     return (
