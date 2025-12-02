@@ -18,7 +18,7 @@ export const chatService = {
 
   getHistory: async (sessionId) => {
     try {
-      const response = await chatApi.get(`chat/history/${sessionId}`);
+      const response = await chatApi.get(`/chat/history/${sessionId}`);
       return response.data;
     }
     catch (error) {
@@ -29,7 +29,7 @@ export const chatService = {
 
   getCase: async (sessionId) => {
     try {
-      const response = await chatApi.get(`casos/${sessionId}`);
+      const response = await chatApi.get(`/casos/${sessionId}`);
       return response.data;
     }
     catch (error) {

@@ -2,11 +2,13 @@ import { Form, Button, Row, Col, Modal, Container, Alert, Spinner } from "react-
 import { useState, useEffect } from "react";
 import { chatService } from "../../domain/services/chatService";
 import { formatDate } from "../utils/formatDate";
+import { predenunciaService } from "../../domain/services/predenunciaService";
 
 export default function Predenuncia() {
     const sessionId = localStorage.getItem("session_id");
     const [loading, setLoading] = useState(true);
-    const [modal, setModal] = useState(false)
+    const [modal, setModal] = useState(false);
+    const [folio, setFolio]=useState("123");
 
     const municipios = [
         "Benito Juárez",
@@ -115,10 +117,25 @@ export default function Predenuncia() {
         }));
     };
 
-
-    const handleSubmit = (e) => {
+    // envio del formulario
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setModal(true)
+        try {
+            const payload = {
+                ...formData
+            };
+            const response = await predenunciaService.sendPredenuncia(payload);
+            console.log("Respuesta:", response);
+            if (response.folio){
+                setFolio(response.folio);
+            }
+            setModal(true);
+        }
+        catch(error){
+            console.error("Error al enviar predenuncia");
+            alert("No se ha enviado la predenuncia");
+        }
+        
     };
 
 
@@ -287,8 +304,8 @@ export default function Predenuncia() {
                         </Modal.Header>
 
                         <Modal.Body>
-                            <p><strong>Folio de seguimiento: </strong>A123</p>
-                            <p>Recuerda guardar tu folio para realizar la consulta del seguimiento de tu predenuncia.</p>
+                            <p><strong>Folio de seguimiento: </strong>{folio}</p>
+                            <p>Recuerda guardar tu folio para realizar la consulta del seguimiento de tu pre-denuncia.</p>
                         </Modal.Body>
 
                         <Modal.Footer>
