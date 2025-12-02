@@ -72,15 +72,6 @@ export default function AdminNavbar() {
                 Mis casos
               </Nav.Link>
 
-              <Nav.Link
-                as={Link}
-                to="/admin/agenda"
-                className="nav-item-custom"
-                onClick={() => setExpanded(false)}
-              >
-                <FaCalendarCheck className="me-1"/>
-                Agenda de citas
-              </Nav.Link>
             </Nav>
 
             {/** PERFIL — SIEMPRE A LA DERECHA */}

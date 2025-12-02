@@ -5,6 +5,7 @@ export default class Institucion {
     this.acronimo = data.acronimo;
     this.descripcion = data.descripcion_inst;
     this.direccion = data.direccion;
+    this.coordenadas = data.coordenadas;
     this.telefono = data.telefono_contacto;
     this.correo = data.correo_contacto;
     this.estado = data.estado_instituto;

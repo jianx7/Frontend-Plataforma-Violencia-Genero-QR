@@ -19,10 +19,7 @@ export default function DashboardAdmin() {
           <StatCard title="Casos nuevos" value={3} variant="warning" />
         </Col>
         <Col md={3}>
-          <StatCard title="Citas del día" value={4} variant="success" />
-        </Col>
-        <Col md={3}>
-          <StatCard title="Total de casos" value={18} variant="primary" />
+          <StatCard title="Total de casos" value={18} variant="danger" />
         </Col>
       </Row>
 

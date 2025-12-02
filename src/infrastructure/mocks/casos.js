@@ -5,7 +5,7 @@ export const MOCK_CASOS = [
     tipo: "Física",
     estado: "Nuevo",
     fecha: "2025-11-18",
-    victima: { nombre: "Ana Pérez", alias: "ana123", telefono: "998xxxxxxx" },
+    victima: { nombre: "Ana Pérez", alias: "ana123", correo: "ana@gmail.com" },
     relato: "Relato breve del incidente A120...",
     documentos: [
       { id: 1, nombre: "INE.pdf", url: "" },
@@ -18,7 +18,7 @@ export const MOCK_CASOS = [
     tipo: "Psicológica",
     estado: "Proceso",
     fecha: "2025-11-17",
-    victima: { nombre: "María López", alias: "mlopez", telefono: "999xxxxxxx" },
+    victima: { nombre: "María López", alias: "mlopez", correo: "maria@gmail.com" },
     relato: "Relato breve del incidente A121...",
     documentos: [],
     citas: [{ fecha: "2025-11-20", hora: "11:00" }]

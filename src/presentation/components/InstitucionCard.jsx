@@ -3,7 +3,7 @@ import mapsService from "../../domain/services/mapsService";
 export default function InstitucionCard({ institucion }) {
   const handleVerMapa = async () => {
     try {
-      const url = await mapsService.obtenerLinkMapa(institucion.direccion);
+      const url = await mapsService.obtenerLinkMapa(institucion.coordenadas);
       window.open(url, "_blank"); // abre Google Maps en nueva pestaña
     } catch (error) {
       console.error("Error al generar el link de mapa:", error);

@@ -29,17 +29,19 @@ export default function DetalleCaso() {
 
   return (
     <Container className="py-4">
+      <h2>Folio: {caso.folio}</h2>
+          <p><strong>Tipo:</strong> {caso.tipo} — <strong>Estado:</strong> {caso.estado}</p>
       <Row>
         <Col md={8}>
-          <h2>Folio: {caso.folio}</h2>
-          <p><strong>Tipo:</strong> {caso.tipo} — <strong>Estado:</strong> {caso.estado}</p>
+          
 
           <Card className="mb-3">
             <Card.Header className="card-header">Datos de la víctima</Card.Header>
             <Card.Body>
               <p><strong>Nombre:</strong> {caso.victima.nombre}</p>
               <p><strong>Alias:</strong> {caso.victima.alias}</p>
-              <p><strong>Teléfono:</strong> {caso.victima.telefono}</p>
+              <p><strong>Correo:</strong> {caso.victima.correo}</p>
+              <p><strong>Fecha:</strong> {caso.fecha}</p>
             </Card.Body>
           </Card>
 
@@ -47,37 +49,14 @@ export default function DetalleCaso() {
             <Card.Header className="card-header">Relato</Card.Header>
             <Card.Body>{caso.relato}</Card.Body>
           </Card>
-
-          <Card className="mb-3">
-            <Card.Header className="card-header">Documentos</Card.Header>
-            <Card.Body>
-              {caso.documentos.length === 0 && <p>No hay documentos.</p>}
-              {caso.documentos.map((d) => (
-                <div key={d.id} className="mb-2">
-                  <a href={d.url} target="_blank" rel="noreferrer">{d.nombre}</a>
-                  {/* botón de validar, descargar, etc */}
-                  <Button size="sm" variant="outline-success" className="ms-2">Validar</Button>
-                </div>
-              ))}
-            </Card.Body>
-          </Card>
         </Col>
 
         <Col md={4}>
           <Card className="mb-3">
             <Card.Header className="card-header">Acciones</Card.Header>
             <Card.Body className="d-flex flex-column gap-2">
-              <Button variant="primary">Agendar cita</Button>
               <Button variant="outline-secondary">Marcar en revisión</Button>
               <Button variant="danger">Cerrar caso</Button>
-            </Card.Body>
-          </Card>
-
-          <Card>
-            <Card.Header className="card-header">Resumen</Card.Header>
-            <Card.Body>
-              <p><strong>Fecha:</strong> {caso.fecha}</p>
-              <p><strong>Citas:</strong> {caso.citas.length}</p>
             </Card.Body>
           </Card>
         </Col>

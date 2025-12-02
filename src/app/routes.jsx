@@ -15,7 +15,6 @@ import AdminLayout from "../presentation/pages/AdminLayout";
 import Seguimiento from "../presentation/pages/Seguimiento";
 import DetalleCaso from "../presentation/components/admin-view/DetalleCaso";
 import MisCasos from "../presentation/pages/MisCasos";
-import Agenda from "../presentation/pages/Agenda";
 import PrivateRoute from "../presentation/components/PrivateRoute";
 import PublicRoute from "../presentation/components/PublicRoute";
 
@@ -62,7 +61,6 @@ export default function RoutesApp() {
       >
         <Route path="dashboard" element={<DashboardAdmin />} />
         <Route path="casos" element={<MisCasos />} />
-        <Route path="agenda" element={<Agenda />} />
         <Route path="folio/:folio" element={<DetalleCaso />} />
       </Route>
     </Routes>
