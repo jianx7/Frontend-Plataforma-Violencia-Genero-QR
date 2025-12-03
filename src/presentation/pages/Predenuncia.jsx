@@ -9,6 +9,10 @@ export default function Predenuncia() {
     const [loading, setLoading] = useState(true);
     const [modal, setModal] = useState(false);
     const [folio, setFolio] = useState("123");
+    // conservar el correo del login
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userEmail = user?.email || "";
+
 
     const municipios = [
         "Benito Juárez",
@@ -57,7 +61,7 @@ export default function Predenuncia() {
                 const data = await chatService.getCase(sessionId);
 
                 const mapped = {
-                    correo_electronico: data.correo || "",
+                    //correo_electronico: data.correo || "",
                     nombre: data.nombre || "",
                     apellido_paterno: data.apellido_paterno || "",
                     apellido_materno: data.apellido_materno || "",
@@ -142,6 +146,16 @@ export default function Predenuncia() {
         }
 
     };
+
+    useEffect(() => {
+        if (userEmail) {
+            setFormData(prev => ({
+                ...prev,
+                correo_electronico: userEmail
+            }));
+        }
+    }, [userEmail]);
+
 
 
     return (
